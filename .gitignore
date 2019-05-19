@@ -9,3 +9,9 @@
 
 # Undo-tree save-files
 *.~undo-tree
+
+# aotu-save-list
+auto-save-list
+
+# shell history
+eshell
