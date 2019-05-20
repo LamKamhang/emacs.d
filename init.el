@@ -17,7 +17,9 @@
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(custom-enabled-themes (quote (tsdh-dark)))
- '(package-selected-packages (quote (org company))))
+ '(package-selected-packages
+   (quote
+    (ggtags color-identifiers-mode context-coloring company-statistics org company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
