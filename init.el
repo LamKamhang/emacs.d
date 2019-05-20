@@ -21,6 +21,7 @@
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(company-auto-complete t)
+ '(company-auto-complete-chars (quote (46)))
  '(company-idle-delay 0.08)
  '(company-minimum-prefix-length 2)
  '(custom-enabled-themes (quote (tsdh-dark)))
@@ -54,7 +55,9 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal))))
  '(company-scrollbar-bg ((t (:background "lime green"))))
- '(company-scrollbar-fg ((t (:background "gray97")))))
+ '(company-scrollbar-fg ((t (:background "gray97"))))
+ '(company-template-field ((t (:background "green" :foreground "black"))))
+ '(company-tooltip ((t (:background "lawn green" :foreground "black")))))
 
 (tool-bar-mode -1)
 ;; (setq inhibit-splash-screen t)
@@ -103,4 +106,3 @@
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
-
