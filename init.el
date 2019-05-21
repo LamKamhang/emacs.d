@@ -21,9 +21,10 @@
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(company-auto-complete t)
- '(company-auto-complete-chars (quote (46)))
+ '(company-auto-complete-chars nil)
  '(company-idle-delay 0.08)
  '(company-minimum-prefix-length 2)
+ '(counsel-bookmark-avoid-dired nil)
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(package-selected-packages
    (quote
@@ -57,7 +58,8 @@
  '(company-scrollbar-bg ((t (:background "lime green"))))
  '(company-scrollbar-fg ((t (:background "gray97"))))
  '(company-template-field ((t (:background "green" :foreground "black"))))
- '(company-tooltip ((t (:background "lawn green" :foreground "black")))))
+ '(company-tooltip ((t (:background "lawn green" :foreground "black"))))
+ '(swiper-line-face ((t (:inherit highlight)))))
 
 (tool-bar-mode -1)
 ;; (setq inhibit-splash-screen t)
@@ -72,7 +74,8 @@
 ;; -------------------------------------------------------------------------------
 (setq make-backup-files nil)
 (delete-selection-mode t)
-(global-company-mode t)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
 ;; -------------------------------------------------------------------------------
 ;; shortcut
@@ -82,12 +85,13 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f8>") 'open-my-init-file)
-
+(global-set-key (kbd "M-\\") 'split-window-horizontally)
+(global-set-key (kbd "C-x M-\\") 'split-window-vertically)
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 ;; enable this if you want `swiper' to use it
-;; (setq search-default-mode #'char-fold-to-regexp)
+;;(setq search-default-mode #'char-fold-to-regexp)
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -103,6 +107,3 @@
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-
-(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)

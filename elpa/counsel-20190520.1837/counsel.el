@@ -4,7 +4,7 @@
 
 ;; Author: Oleh Krehel <ohwoeowho@gmail.com>
 ;; URL: https://github.com/abo-abo/swiper
-;; Package-Version: 20190519.1216
+;; Package-Version: 20190520.1837
 ;; Version: 0.11.0
 ;; Package-Requires: ((emacs "24.3") (swiper "0.11.0"))
 ;; Keywords: convenience, matching, tools
@@ -399,9 +399,9 @@ Update the minibuffer with the amount of lines collected every
   (company-mode 1)
   (unless company-candidates
     (company-complete))
-  (when company-point
-    (setq ivy-completion-beg (- company-point (length company-prefix)))
-    (setq ivy-completion-end company-point)
+  (when company-common
+    (setq ivy-completion-beg (- (point) (length company-common)))
+    (setq ivy-completion-end (point))
     (ivy-read "company cand: " company-candidates
               :action #'ivy-completion-in-region-action
               :unwind #'company-abort
