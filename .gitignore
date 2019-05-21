@@ -16,4 +16,5 @@ auto-save-list
 # shell history
 eshell
 
-
+# remove recentf
+recentf
