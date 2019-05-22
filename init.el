@@ -28,7 +28,7 @@
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(package-selected-packages
    (quote
-    (yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company))))
+    (markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company))))
 
 (require 'cl)
 
@@ -81,6 +81,10 @@
   (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
 
 (add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(require 'yasnippet)
+(yas-global-mode 1)
 
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 (require 'smartparens-config)
@@ -134,9 +138,6 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
-
-(require 'yasnippet)
-(yas-global-mode 1)
 
 ;; Local Variables:
 ;; coding: utf-8
