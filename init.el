@@ -28,7 +28,7 @@
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(package-selected-packages
    (quote
-    (smartparens highlight-parentheses counsel swiper company-c-headers company-flx company-math company-shell company-statistics company))))
+    (smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company))))
 
 (require 'cl)
 
@@ -77,6 +77,11 @@
 (delete-selection-mode t)
 (global-auto-revert-mode t)
 (add-hook 'after-init-hook 'global-company-mode)
+(defun my-eshell-remove-pcomplete ()
+  (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
+
+(add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
+
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 (require 'smartparens-config)
 (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
