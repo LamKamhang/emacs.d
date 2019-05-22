@@ -28,7 +28,7 @@
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(package-selected-packages
    (quote
-    (smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company))))
+    (yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company))))
 
 (require 'cl)
 
@@ -133,6 +133,10 @@
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+
+(require 'yasnippet)
+(yas-global-mode 1)
 
 ;; Local Variables:
 ;; coding: utf-8
