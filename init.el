@@ -21,9 +21,9 @@
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(company-auto-complete t)
- '(company-auto-complete-chars (quote (46)))
- '(company-idle-delay 0.08)
- '(company-minimum-prefix-length 1)
+ '(company-auto-complete-chars "")
+ '(company-idle-delay 0.1)
+ '(company-minimum-prefix-length 2)
  '(counsel-bookmark-avoid-dired nil)
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(package-selected-packages
