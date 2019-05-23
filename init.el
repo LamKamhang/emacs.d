@@ -1,5 +1,28 @@
+;;; init.el --- my config file for emacs
+
+;; Author: LamKamhang
+
+;; This file is part of GNU Emacs.
+
+;; GNU Emacs is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; GNU Emacs is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+
+
+;;; Commentary:
 ;;
-;; (setq debug-on-error t)
+
+;;; Code:
+
 ;; ------------------------------------------------------------------------------
 ;; package initialize
 ;; ------------------------------------------------------------------------------
@@ -28,7 +51,7 @@
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(package-selected-packages
    (quote
-    (markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company))))
+    (gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company))))
 
 (require 'cl)
 
@@ -91,6 +114,7 @@
 (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (add-hook 'c-mode-hook 'smartparens-mode)
 (add-hook 'c++-mode-hook 'smartparens-mode)
+
 ;;highlight parentheses
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
@@ -114,7 +138,7 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f8>") 'open-my-init-file)
 (global-set-key (kbd "M-\\") 'split-window-horizontally)
-(global-set-key (kbd "C-x M-\\") 'split-window-vertically)
+(global-set-key (kbd "C-M-\\") 'split-window-vertically)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
