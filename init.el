@@ -89,12 +89,13 @@
 ;;(global-linum-mode t)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
-
+(setq company-show-numbers t)
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-menu-items 25)
 
 (global-hl-line-mode t)
+
 ;; ------------------------------------------------------------------------------
 ;; common configs
 ;; ------------------------------------------------------------------------------
@@ -102,15 +103,26 @@
 (delete-selection-mode t)
 (global-auto-revert-mode t)
 (add-hook 'after-init-hook 'global-company-mode)
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "SPC") nil)
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "<return>") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  (define-key company-active-map (kbd "TAB") #'company-complete-selection)
+  (define-key company-active-map (kbd "<tab>") #'company-complete-selection))
+
 (defun my-eshell-remove-pcomplete ()
   (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
-
 (add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
+
 ;;(add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'prog-mode-hook #'flycheck-mode)
+
 (require 'yasnippet)
 (yas-global-mode 1)
-
 
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 (require 'smartparens-config)
