@@ -106,16 +106,18 @@
   (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
 
 (add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'prog-mode-hook #'flycheck-mode)
 (require 'yasnippet)
 (yas-global-mode 1)
 
+
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 (require 'smartparens-config)
-(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
-(add-hook 'c-mode-hook 'smartparens-mode)
-(add-hook 'c++-mode-hook 'smartparens-mode)
+(add-hook 'after-init-hook #'smartparens-global-mode)
+;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
+;;(add-hook 'c-mode-hook 'smartparens-mode)
+;;(add-hook 'c++-mode-hook 'smartparens-mode)
 
 ;;highlight parentheses
 (add-hook 'emacs-lisp-mode-hook
