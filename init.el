@@ -86,7 +86,9 @@
 
 (tool-bar-mode -1)
 (setq inhibit-splash-screen t)
-(global-linum-mode t)
+;;(global-linum-mode t)
+(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'text-mode-hook 'linum-mode)
 
 (require 'recentf)
 (recentf-mode t)
