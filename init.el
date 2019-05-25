@@ -121,19 +121,12 @@
 ;;(add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'prog-mode-hook #'flycheck-mode)
 
-(require 'yasnippet)
-(yas-global-mode 1)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
+;;(require 'yasnippet)
+;;(yas-global-mode 1)
 
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
-(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 (require 'smartparens-config)
 (add-hook 'after-init-hook #'smartparens-global-mode)
-;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
-;;(add-hook 'c-mode-hook 'smartparens-mode)
-;;(add-hook 'c++-mode-hook 'smartparens-mode)
 
 ;;highlight parentheses
 (define-globalized-minor-mode global-highlight-parentheses-mode
