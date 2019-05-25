@@ -51,7 +51,7 @@
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(package-selected-packages
    (quote
-    (gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
+    (ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -79,6 +79,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal))))
  '(company-scrollbar-bg ((t (:background "lime green"))))
  '(company-scrollbar-fg ((t (:background "gray97"))))
  '(company-template-field ((t (:background "green" :foreground "black"))))
@@ -106,6 +107,7 @@
 ;; ------------------------------------------------------------------------------
 ;; common configs
 ;; ------------------------------------------------------------------------------
+(setq ring-bell-function 'ignore)
 (setq make-backup-files nil)
 (delete-selection-mode t)
 (global-auto-revert-mode t)
@@ -150,8 +152,23 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f8>") 'open-my-init-file)
-(global-set-key (kbd "M-\\") 'split-window-horizontally)
-(global-set-key (kbd "C-M-\\") 'split-window-vertically)
+(global-set-key (kbd "M-|") 'split-window-horizontally)
+(global-set-key (kbd "C-M-|") 'split-window-vertically)
+
+(defun split-balance-window-horizontally ()
+  (interactive)
+  (command-execute 'split-window-horizontally)
+  (command-execute 'balance-windows)
+  )
+
+(defun split-balance-window-vertically ()
+  (interactive)
+  (command-execute 'split-window-vertically)
+  (command-execute 'balance-windows)
+  )
+
+(global-set-key (kbd "M-\\") 'split-balance-window-horizontally)
+(global-set-key (kbd "C-M-\\") 'split-balance-window-vertically)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -175,6 +192,13 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
+(global-set-key (kbd "C-o") 'ace-window)
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+;; org-mode
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-switchb)
 
 ;; Local Variables:
 ;; coding: utf-8
