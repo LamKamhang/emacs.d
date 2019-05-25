@@ -3,8 +3,8 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "smartparens" "smartparens.el" (23779 35787
-;;;;;;  628316 969000))
+;;;### (autoloads nil "smartparens" "smartparens.el" (23782 9978
+;;;;;;  279795 881000))
 ;;; Generated autoloads from smartparens.el
 
 (autoload 'sp-cheat-sheet "smartparens" "\
@@ -190,7 +190,7 @@ Turn off `show-smartparens-mode'.
 ;;;;;;  "smartparens-ml.el" "smartparens-org.el" "smartparens-pkg.el"
 ;;;;;;  "smartparens-python.el" "smartparens-racket.el" "smartparens-rst.el"
 ;;;;;;  "smartparens-ruby.el" "smartparens-rust.el" "smartparens-scala.el"
-;;;;;;  "smartparens-text.el") (23779 35788 52325 66000))
+;;;;;;  "smartparens-text.el") (23782 9978 739816 684000))
 
 ;;;***
 

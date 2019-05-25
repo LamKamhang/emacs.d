@@ -3,8 +3,8 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "counsel" "counsel.el" (23779 33205 165758
-;;;;;;  149000))
+;;;### (autoloads nil "counsel" "counsel.el" (23784 37788 872657
+;;;;;;  967000))
 ;;; Generated autoloads from counsel.el
 
 (autoload 'counsel-el "counsel" "\
@@ -322,6 +322,11 @@ See also `counsel-yank-pop-filter' for how to filter candidates.
 Note: Duplicate elements of `kill-ring' are always deleted.
 
 \(fn &optional ARG)" t nil)
+
+(autoload 'counsel-register "counsel" "\
+Interactively choose a register.
+
+\(fn)" t nil)
 
 (autoload 'counsel-imenu "counsel" "\
 Jump to a buffer position indexed by imenu.

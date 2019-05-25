@@ -4,7 +4,7 @@
 
 ;; Author: Oleh Krehel <ohwoeowho@gmail.com>
 ;; URL: https://github.com/abo-abo/swiper
-;; Package-Version: 20190518.2158
+;; Package-Version: 20190522.1011
 ;; Version: 0.11.0
 ;; Package-Requires: ((emacs "24.1") (ivy "0.11.0"))
 ;; Keywords: matching
@@ -1404,9 +1404,9 @@ When not running `swiper-isearch' already, start it."
           (string-match regex current-str start)
           (setq start (match-end 0)))
         (swiper--isearch-highlight current-str j)
-        (ivy-add-face-text-property
+        (font-lock-append-text-property
          0 (length current-str)
-         'swiper-line-face current-str t)
+         'face 'swiper-line-face current-str)
         (push current-str res))
       (cl-incf len)
       (setq i (1+ index))

@@ -32,8 +32,8 @@
 ;; You may delete these explanatory comments.
 (when (>= emacs-major-version 25)
   (require 'package)
-  (package-initialize)
   (add-to-list 'package-archives '("melpa" . "http://elpa.emacs-china.org/melpa/") t)
+  (package-initialize)
   )
 
 (custom-set-variables
@@ -124,6 +124,10 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 (require 'smartparens-config)
 (add-hook 'after-init-hook #'smartparens-global-mode)
@@ -132,13 +136,6 @@
 ;;(add-hook 'c++-mode-hook 'smartparens-mode)
 
 ;;highlight parentheses
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (highlight-parentheses-mode)
-             (setq autopair-handle-action-fns
-                   (list 'autopair-default-handle-action
-                         '(lambda (action pair pos-before)
-                            (hl-paren-color-update))))))
 (define-globalized-minor-mode global-highlight-parentheses-mode
   highlight-parentheses-mode
   (lambda ()
