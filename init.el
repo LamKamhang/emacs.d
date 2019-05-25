@@ -51,7 +51,9 @@
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(package-selected-packages
    (quote
-    (gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company))))
+    (gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 
 (require 'cl)
 
@@ -77,12 +79,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal))))
  '(company-scrollbar-bg ((t (:background "lime green"))))
  '(company-scrollbar-fg ((t (:background "gray97"))))
  '(company-template-field ((t (:background "green" :foreground "black"))))
  '(company-tooltip ((t (:background "lawn green" :foreground "black"))))
  '(swiper-line-face ((t (:inherit highlight)))))
+
+(if (eq window-system 'w32)
+    (custom-set-faces
+     '(default ((t (:family "SimHei" :foundry "outline" :slant normal :weight bold :height 181 :width normal)))))
+  (custom-set-faces
+   '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal))))))
 
 (tool-bar-mode -1)
 (setq inhibit-splash-screen t)
