@@ -79,11 +79,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal))))
- '(company-scrollbar-bg ((t (:background "lime green"))))
- '(company-scrollbar-fg ((t (:background "gray97"))))
- '(company-template-field ((t (:background "green" :foreground "black"))))
- '(company-tooltip ((t (:background "lawn green" :foreground "black"))))
  '(swiper-line-face ((t (:inherit highlight)))))
 
 (if (eq window-system 'w32)
