@@ -827,7 +827,8 @@ selection, non-nil otherwise."
               (t
                (message "")
                (setcar actions (1+ action-idx))
-               (ivy-set-action actions)))))))
+               (ivy-set-action actions))))))
+  (ivy-shrink-after-dispatching))
 
 (defun ivy-shrink-after-dispatching ()
   "Shrink the window after dispatching when action list is too large."
@@ -3550,18 +3551,25 @@ Note: The usual last two arguments are flipped for convenience.")
         (while (and (string-match re str start)
                     (> (- (match-end 0) (match-beginning 0)) 0))
           (setq start (match-end 0))
-          (let ((i 0))
+          (let ((i 0)
+                (n 0)
+                prev)
             (while (<= i ivy--subexps)
-              (let ((face
-                     (cond ((zerop ivy--subexps)
-                            (cadr ivy-minibuffer-faces))
-                           ((zerop i)
-                            (car ivy-minibuffer-faces))
-                           (t
-                            (ivy--minibuffer-face i)))))
-                (ivy-add-face-text-property
-                 (match-beginning i) (match-end i)
-                 face str))
+              (let ((beg (match-beginning i))
+                    (end (match-end i)))
+                (when (and beg end)
+                  (unless (and prev (= prev beg))
+                    (cl-incf n))
+                  (let ((face
+                         (cond ((zerop ivy--subexps)
+                                (cadr ivy-minibuffer-faces))
+                               ((zerop i)
+                                (car ivy-minibuffer-faces))
+                               (t
+                                (ivy--minibuffer-face n)))))
+                    (ivy-add-face-text-property beg end face str))
+                  (unless (zerop i)
+                    (setq prev end))))
               (cl-incf i)))))))
   str)
 

@@ -4,7 +4,7 @@
 
 ;; Author: Oleh Krehel <ohwoeowho@gmail.com>
 ;; URL: https://github.com/abo-abo/swiper
-;; Package-Version: 20190523.2008
+;; Package-Version: 20190527.1406
 ;; Version: 0.11.0
 ;; Package-Requires: ((emacs "24.3") (swiper "0.11.0"))
 ;; Keywords: convenience, matching, tools
@@ -386,10 +386,10 @@ Update the minibuffer with the amount of lines collected every
 ;;** `counsel-company'
 (defvar company-candidates)
 (defvar company-common)
+(defvar company-prefix)
+(declare-function company-abort "ext:company")
 (declare-function company-complete "ext:company")
 (declare-function company-mode "ext:company")
-(declare-function company-complete-common "ext:company")
-(declare-function company-abort "ext:company")
 
 ;;;###autoload
 (defun counsel-company ()
@@ -398,13 +398,17 @@ Update the minibuffer with the amount of lines collected every
   (company-mode 1)
   (unless company-candidates
     (company-complete))
-  (when company-common
-    (setq ivy-completion-beg (- (point) (length company-common)))
-    (setq ivy-completion-end (point))
-    (ivy-read "company cand: " company-candidates
-              :action #'ivy-completion-in-region-action
-              :unwind #'company-abort
-              :caller 'counsel-company)))
+  (let ((len (cond (company-common
+                    (length company-common))
+                   (company-prefix
+                    (length company-prefix)))))
+    (when len
+      (setq ivy-completion-beg (- (point) len))
+      (setq ivy-completion-end (point))
+      (ivy-read "Candidate: " company-candidates
+                :action #'ivy-completion-in-region-action
+                :unwind #'company-abort
+                :caller 'counsel-company))))
 
 ;;** `counsel-irony'
 (declare-function irony-completion-candidates-async "ext:irony-completion")
@@ -5420,22 +5424,17 @@ subdirectories that builds may be invoked in."
 
 (defun counsel--get-build-subdirs (blddir)
   "Return all subdirs under BLDDIR sorted by modification time.
-If there are non-directory files in BLDDIR we also return BLDDIR in
-  the list as it may also be a build directory."
+If there are non-directory files in BLDDIR, include BLDDIR in the
+list as it may also be a build directory."
   (let* ((files (directory-files-and-attributes
                  blddir t directory-files-no-dot-files-regexp t))
-         (filtered-files (cl-remove-if
-                          (lambda (f) (not (nth 1 f)))
-                          files)))
-    ;; any non-dir files?
-    (when (< (length filtered-files)
+         (dirs (cl-remove-if-not #'cl-second files)))
+    ;; Any non-dir files?
+    (when (< (length dirs)
              (length files))
-      (push (cons blddir (file-attributes blddir))
-            filtered-files))
-    (mapcar #'car
-            (sort filtered-files
-                  (lambda (x y)
-                    (time-less-p (nth 6 y) (nth 6 x)))))))
+      (push (cons blddir (file-attributes blddir)) dirs))
+    (mapcar #'car (sort dirs (lambda (x y)
+                               (time-less-p (nth 6 y) (nth 6 x)))))))
 
 (defun counsel-compile-get-build-directories (&optional dir)
   "Return a list of potential build directories."
@@ -5503,7 +5502,7 @@ This is determined by `counsel-compile-local-builds', which see."
   "Tracks the last directory `counsel-compile' was called with.
 
 This state allows us to set it correctly if the user has manually
-edited the command loosing our embedded state.")
+edited the command, thus losing our embedded state.")
 
 (defun counsel-compile--action (cmd)
   "Process CMD to call `compile'.
