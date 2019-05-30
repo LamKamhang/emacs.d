@@ -49,6 +49,7 @@
  '(company-minimum-prefix-length 2)
  '(counsel-bookmark-avoid-dired nil)
  '(custom-enabled-themes (quote (tsdh-dark)))
+ '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
     (ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
