@@ -53,7 +53,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
+    (rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -85,9 +85,10 @@
 
 (if (eq window-system 'w32)
     (custom-set-faces
-     '(default ((t (:family "SimHei" :foundry "outline" :slant normal :weight normal :height 181 :width normal)))))
+     '(default ((t (:family #("新宋体" 0 3 (charset chinese-gbk)) :foundry "outline" :slant normal :weight normal :height 143 :width normal)))))
   (custom-set-faces
-   '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal))))))
+   '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal)))))
+  )
 
 (display-time-mode t)
 (tool-bar-mode 0)
