@@ -6,7 +6,7 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "avy" "avy.el" (0 0 0 0))
+;;;### (autoloads nil "avy" "avy.el" (23840 19177 962362 624000))
 ;;; Generated autoloads from avy.el
 
 (autoload 'avy-goto-char "avy" "\
@@ -251,7 +251,9 @@ The window scope is determined by `avy-all-windows' (ARG negates it).
 
 \(fn &optional ARG)" t nil)
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "avy" '("avy-")))
+;;;***
+
+;;;### (autoloads nil nil ("avy-pkg.el") (23840 19128 285391 662000))
 
 ;;;***
 
