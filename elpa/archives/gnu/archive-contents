@@ -1471,15 +1471,9 @@
 	 ("Helmut Eller" . "eller.helmut@gmail.com"))
 	(:url . "http://elpa.gnu.org/packages/peg.html"))])
  (persist .
-<<<<<<< HEAD
 	  [(0 2)
 	   nil "Persist Variables" single
 	   ((:url . "http://elpa.gnu.org/packages/persist.html")
-=======
-	  [(0 4)
-	   nil "Persist Variables between Emacs Sessions" tar
-	   ((:maintainer "Phillip Lord" . "phillip.lord@russet.org.uk")
->>>>>>> d2a09f8939b32fa76f7fae87e4ff9a818777fb61
 	    (:authors
 	     ("Phillip Lord" . "phillip.lord@russet.org.uk"))
 	    (:url . "http://elpa.gnu.org/packages/persist.html"))])
