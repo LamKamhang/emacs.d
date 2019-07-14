@@ -53,7 +53,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
+    (solarized-theme zenburn-theme rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -73,6 +73,8 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
+(load-theme 'zenburn t)
+;; (load-theme 'solarized-dark t)
 ;; ------------------------------------------------------------------------------
 ;; customize face
 ;; ------------------------------------------------------------------------------
@@ -81,6 +83,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family #("新宋体" 0 3 (charset chinese-gbk)) :foundry "outline" :slant normal :weight normal :height 143 :width normal))))
  '(swiper-line-face ((t (:inherit highlight)))))
 
 (if (eq window-system 'w32)
@@ -102,7 +105,6 @@
 (setq recentf-max-menu-items 25)
 
 (global-hl-line-mode t)
-
 ;; ------------------------------------------------------------------------------
 ;; common configs
 ;; ------------------------------------------------------------------------------
