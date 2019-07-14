@@ -53,7 +53,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (solarized-theme zenburn-theme rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
+    (rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -73,8 +73,6 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
-(load-theme 'zenburn t)
-;; (load-theme 'solarized-dark t)
 ;; ------------------------------------------------------------------------------
 ;; customize face
 ;; ------------------------------------------------------------------------------
