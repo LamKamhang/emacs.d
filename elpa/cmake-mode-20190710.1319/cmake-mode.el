@@ -1,5 +1,7 @@
 ;;; cmake-mode.el --- major-mode for editing CMake sources
-;; Package-Version: 20180709.1426
+
+;; Package-Requires: ((emacs "24.1"))
+;; Package-Version: 20190710.1319
 
 ; Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 ; file Copyright.txt or https://cmake.org/licensing for details.
@@ -225,17 +227,11 @@ the indentation.  Otherwise it retains the same position on the line"
 ;;
 (defvar cmake-mode-hook nil)
 
-;------------------------------------------------------------------------------
-
-;; For compatibility with Emacs < 24
-(defalias 'cmake--parent-mode
-  (if (fboundp 'prog-mode) 'prog-mode 'fundamental-mode))
-
 ;;------------------------------------------------------------------------------
 ;; Mode definition.
 ;;
 ;;;###autoload
-(define-derived-mode cmake-mode cmake--parent-mode "CMake"
+(define-derived-mode cmake-mode prog-mode "CMake"
   "Major mode for editing CMake source files."
 
   ; Setup font-lock mode.
