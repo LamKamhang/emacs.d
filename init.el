@@ -110,6 +110,14 @@
 (delete-selection-mode t)
 (global-auto-revert-mode t)
 (add-hook 'after-init-hook 'global-company-mode)
+(add-hook
+ 'c++mode-hook
+ (lambda ()
+   (setq flycheck-clang-language-standard "c++17")))
+(add-hook
+ 'eshell-mode-hook
+ (lambda ()
+   (setq pcomplete-cycle-completions nil)))
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
