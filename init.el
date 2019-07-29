@@ -110,16 +110,30 @@
 (global-auto-revert-mode t)
 
 ;; Completion words longer than 2 characters
-
+(global-auto-complete-mode t)
 (eval-after-load "auto-complete"
   '(progn
       (ac-ispell-setup)))
 
-(add-hook 'git-commit-mode-hook 'ac-ispell-ac-setup)
+(add-hook 'git-cnommit-mode-hook 'ac-ispell-ac-setup)
 (add-hook 'mail-mode-hook 'ac-ispell-ac-setup)
 (add-hook 'text-mode-hook 'ac-ispell-ac-setup)
 (add-hook 'prog-mode-hook 'ac-ispell-ac-setup)
 
+(setq ac-auto-show-menu 0.1)
+(setq ac-quick-help-delay 0.2)
+
+(require 'auto-complete-config)
+(setq ac-use-menu-map t)
+;; Default settings
+(define-key ac-menu-map "\M-n" nil)
+(define-key ac-menu-map "\M-p" nil)
+(define-key ac-menu-map (kbd "RET") nil)
+(define-key ac-menu-map (kbd "<return>") nil)
+(define-key ac-menu-map "\C-n" 'ac-next)
+(define-key ac-menu-map "\C-p" 'ac-previous)
+(define-key ac-menu-map (kbd "TAB") 'ac-complete)
+(define-key ac-menu-map (kbd "<tab>") 'ac-complete)
 
 (add-hook
  'c++mode-hook
