@@ -1,13 +1,10 @@
 ;;; smartparens-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-
-(add-to-list 'load-path (directory-file-name
-                         (or (file-name-directory #$) (car load-path))))
-
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "smartparens" "smartparens.el" (23840 19167
-;;;;;;  945328 242000))
+;;;### (autoloads nil "smartparens" "smartparens.el" (23871 4894
+;;;;;;  531213 783000))
 ;;; Generated autoloads from smartparens.el
 
 (autoload 'sp-cheat-sheet "smartparens" "\
@@ -186,14 +183,15 @@ Turn off `show-smartparens-mode'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("smartparens-clojure.el" "smartparens-config.el"
-;;;;;;  "smartparens-crystal.el" "smartparens-elixir.el" "smartparens-ess.el"
-;;;;;;  "smartparens-haskell.el" "smartparens-html.el" "smartparens-javascript.el"
-;;;;;;  "smartparens-latex.el" "smartparens-lua.el" "smartparens-markdown.el"
-;;;;;;  "smartparens-ml.el" "smartparens-org.el" "smartparens-pkg.el"
-;;;;;;  "smartparens-python.el" "smartparens-racket.el" "smartparens-rst.el"
-;;;;;;  "smartparens-ruby.el" "smartparens-rust.el" "smartparens-scala.el"
-;;;;;;  "smartparens-text.el") (23840 19168 17335 624000))
+;;;### (autoloads nil nil ("smartparens-c.el" "smartparens-clojure.el"
+;;;;;;  "smartparens-config.el" "smartparens-crystal.el" "smartparens-elixir.el"
+;;;;;;  "smartparens-ess.el" "smartparens-haskell.el" "smartparens-html.el"
+;;;;;;  "smartparens-javascript.el" "smartparens-latex.el" "smartparens-lua.el"
+;;;;;;  "smartparens-markdown.el" "smartparens-ml.el" "smartparens-org.el"
+;;;;;;  "smartparens-pkg.el" "smartparens-python.el" "smartparens-racket.el"
+;;;;;;  "smartparens-rst.el" "smartparens-ruby.el" "smartparens-rust.el"
+;;;;;;  "smartparens-scala.el" "smartparens-text.el") (23871 4894
+;;;;;;  635212 951000))
 
 ;;;***
 
@@ -201,6 +199,5 @@ Turn off `show-smartparens-mode'.
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
-;; coding: utf-8
 ;; End:
 ;;; smartparens-autoloads.el ends here
