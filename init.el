@@ -41,19 +41,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ac-ispell-fuzzy-limit 4)
+ '(ac-ispell-requires 2)
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
- '(company-auto-complete t)
- '(company-auto-complete-chars "")
- '(company-idle-delay 0.1)
- '(company-minimum-prefix-length 2)
  '(counsel-bookmark-avoid-dired nil)
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(display-time-mode t)
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper company-c-headers company-math company-shell company-statistics company)))
+    (flycheck-pos-tip auto-complete-c-headers ac-ispell fuzzy auto-complete rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -81,6 +79,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal))))
  '(swiper-line-face ((t (:inherit highlight)))))
 
 (if (eq window-system 'w32)
@@ -96,7 +95,7 @@
 ;;(global-linum-mode t)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
-(setq company-show-numbers t)
+
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-menu-items 25)
@@ -109,26 +108,32 @@
 (setq make-backup-files nil)
 (delete-selection-mode t)
 (global-auto-revert-mode t)
-(add-hook 'after-init-hook 'global-company-mode)
+
+;; Completion words longer than 2 characters
+
+(eval-after-load "auto-complete"
+  '(progn
+      (ac-ispell-setup)))
+
+(add-hook 'git-commit-mode-hook 'ac-ispell-ac-setup)
+(add-hook 'mail-mode-hook 'ac-ispell-ac-setup)
+(add-hook 'text-mode-hook 'ac-ispell-ac-setup)
+(add-hook 'prog-mode-hook 'ac-ispell-ac-setup)
+
+
 (add-hook
  'c++mode-hook
  (lambda ()
-   (setq flycheck-clang-language-standard "c++17")))
+   (setq flycheck-gcc-language-standard "c++11")))
+
+(with-eval-after-load 'flycheck
+  (flycheck-pos-tip-mode))
+
 (add-hook
  'eshell-mode-hook
  (lambda ()
    (setq pcomplete-cycle-completions nil)))
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "SPC") nil)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "<return>") nil)
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous)
-  (define-key company-active-map (kbd "TAB") #'company-complete-selection)
-  (define-key company-active-map (kbd "<tab>") #'company-complete-selection))
-
+(ac-config-default)
 (defun my-eshell-remove-pcomplete ()
   (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
 (add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
