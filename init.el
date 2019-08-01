@@ -43,6 +43,10 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+ '(company-auto-complete t)
+ '(company-auto-complete-chars "")
+ '(company-idle-delay 0.1)
+ '(company-minimum-prefix-length 2)
  '(counsel-bookmark-avoid-dired nil)
  '(custom-enabled-themes (quote (tsdh-dark)))
  '(display-time-mode t)
@@ -94,6 +98,8 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
 
+(setq company-show-numbers t)
+
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-menu-items 25)
@@ -106,6 +112,8 @@
 (setq make-backup-files nil)
 (delete-selection-mode t)
 (global-auto-revert-mode t)
+
+(add-hook 'after-init-hook 'global-company-mode)
 
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "M-n") nil)
