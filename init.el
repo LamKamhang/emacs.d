@@ -49,7 +49,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (flycheck-pos-tip auto-complete-c-headers fuzzy auto-complete rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper)))
+    (flycheck-pos-tip fuzzy rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -107,47 +107,10 @@
 (delete-selection-mode t)
 (global-auto-revert-mode t)
 
-(setq ac-auto-show-menu 0.1)
-(setq ac-quick-help-delay 0.2)
-
-(require 'auto-complete-config)
-(setq ac-use-menu-map t)
-;; Default settings
-(define-key ac-menu-map (kbd "RET") nil)
-(define-key ac-menu-map (kbd "<return>") nil)
-(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "\C-p" 'ac-previous)
-(define-key ac-menu-map (kbd "TAB") 'ac-complete)
-(define-key ac-menu-map (kbd "<tab>") 'ac-complete)
-
 (add-hook
  'c++mode-hook
  (lambda ()
    (setq flycheck-gcc-language-standard "c++11")))
-
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
-(if (eq window-system 'w32)
-    (defun my:ac-c-headers-init ()
-        (require 'auto-complete-c-headers)
-	(add-to-list 'ac-sources 'ac-source-c-headers))
-  (defun my:ac-c-headers-init ()
-    (require 'auto-complete-c-headers)
-    (add-to-list 'ac-sources 'ac-source-c-headers)
-    (add-to-list 'achead:include-directories
-		 '"/usr/include/c++/7
- /usr/include/x86_64-linux-gnu/c++/7
- /usr/include/c++/7/backward
- /usr/lib/gcc/x86_64-linux-gnu/7/include
- /usr/local/include
- /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed
- /usr/include/x86_64-linux-gnu
- /usr/include
-"))
-  )
-
-(add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-(add-hook 'c-mode-hook 'my:ac-c-headers-init)
 
 (with-eval-after-load 'flycheck
   (flycheck-pos-tip-mode))
@@ -156,8 +119,7 @@
  'eshell-mode-hook
  (lambda ()
    (setq pcomplete-cycle-completions nil)))
-(ac-config-default)
-(add-hook 'eshell-mode-hook 'auto-complete-mode)
+
 (defun my-eshell-remove-pcomplete ()
   (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
 (add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
