@@ -45,6 +45,9 @@
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(company-auto-complete t)
  '(company-auto-complete-chars "")
+ '(company-c-headers-path-system
+   (quote
+    ("/usr/include/" "/usr/local/include/" "/usr/include/c++/7/")))
  '(company-idle-delay 0.1)
  '(company-minimum-prefix-length 2)
  '(counsel-bookmark-avoid-dired nil)
@@ -82,7 +85,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal))))
+ '(company-preview ((t (:foreground "darkgray" :underline t))))
+ '(company-preview-common ((t (:inherit company-preview))))
+ '(company-tooltip ((t (:background "lightgray" :foreground "black"))))
+ '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
+ '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
+ '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
  '(swiper-line-face ((t (:inherit highlight)))))
+
+
 
 (if (eq window-system 'w32)
     (custom-set-faces
@@ -90,6 +101,7 @@
   (custom-set-faces
    '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 158 :width normal)))))
   )
+
 
 (display-time-mode t)
 (tool-bar-mode 0)
@@ -113,7 +125,8 @@
 (delete-selection-mode t)
 (global-auto-revert-mode t)
 
-(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'prog-mode-hook 'company-mode)
+(add-hook 'text-mode-hook 'company-mode)
 
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "M-n") nil)
@@ -124,7 +137,8 @@
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
   (define-key company-active-map (kbd "TAB") #'company-complete-selection)
-  (define-key company-active-map (kbd "<tab>") #'company-complete-selection))
+  (define-key company-active-map (kbd "<tab>") #'company-complete-selection)
+  (add-to-list 'company-backends 'company-c-headers))
 
 (add-hook
  'c++mode-hook

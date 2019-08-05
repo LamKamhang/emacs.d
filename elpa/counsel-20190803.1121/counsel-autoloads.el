@@ -3,8 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "counsel" "counsel.el" (23867 50648 729679
-;;;;;;  986000))
+;;;### (autoloads nil "counsel" "counsel.el" (23879 31604 29951 220000))
 ;;; Generated autoloads from counsel.el
 
 (autoload 'counsel-el "counsel" "\
@@ -179,6 +178,11 @@ When INITIAL-INPUT is non-nil, use it in the minibuffer during completion.
 
 (autoload 'counsel-recentf "counsel" "\
 Find a file on `recentf-list'.
+
+\(fn)" t nil)
+
+(autoload 'counsel-buffer-or-recentf "counsel" "\
+Find a buffer visiting a file or file on `recentf-list'.
 
 \(fn)" t nil)
 
@@ -543,6 +547,11 @@ Additional actions:\\<ivy-minibuffer-map>
 
   \\[ivy-dispatching-done] d: Go to minor mode definition
   \\[ivy-dispatching-done] h: Describe minor mode
+
+\(fn)" t nil)
+
+(autoload 'counsel-major "counsel" "\
+
 
 \(fn)" t nil)
 

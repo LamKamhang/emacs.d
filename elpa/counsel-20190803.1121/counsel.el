@@ -4,7 +4,7 @@
 
 ;; Author: Oleh Krehel <ohwoeowho@gmail.com>
 ;; URL: https://github.com/abo-abo/swiper
-;; Package-Version: 20190726.1745
+;; Package-Version: 20190803.1121
 ;; Version: 0.12.0
 ;; Package-Requires: ((emacs "24.3") (swiper "0.12.0"))
 ;; Keywords: convenience, matching, tools
@@ -531,9 +531,6 @@ Used by commands `counsel-describe-variable' and
                  (error "Couldn't find definition of %s"
                         sym))))))))
 
-(define-obsolete-function-alias 'counsel-symbol-at-point
-    'ivy-thing-at-point "0.7.0")
-
 (defun counsel--variable-p (symbol)
   "Return non-nil if SYMBOL is a bound or documented variable."
   (or (and (boundp symbol)
@@ -877,6 +874,18 @@ packages are, in order of precedence, `amx' and `smex'."
 (defvar counsel-M-x-history nil
   "History for `counsel-M-x'.")
 
+(defun counsel-M-x-action (cmd)
+  "Execute CMD."
+  (setq cmd (intern cmd))
+  (cond ((bound-and-true-p amx-initialized)
+         (amx-rank cmd))
+        ((bound-and-true-p smex-initialized-p)
+         (smex-rank cmd)))
+  (setq prefix-arg current-prefix-arg)
+  (setq this-command cmd)
+  (setq real-this-command cmd)
+  (command-execute cmd 'record))
+
 ;;;###autoload
 (defun counsel-M-x (&optional initial-input)
   "Ivy version of `execute-extended-command'.
@@ -897,16 +906,7 @@ when available, in that order of precedence."
                                      (not (get sym 'byte-obsolete-info)))))
               :require-match t
               :history 'counsel-M-x-history
-              :action (lambda (cmd)
-                        (setq cmd (intern cmd))
-                        (cond ((bound-and-true-p amx-initialized)
-                               (amx-rank cmd))
-                              ((bound-and-true-p smex-initialized-p)
-                               (smex-rank cmd)))
-                        (setq prefix-arg current-prefix-arg)
-                        (setq this-command cmd)
-                        (setq real-this-command cmd)
-                        (command-execute cmd 'record))
+              :action #'counsel-M-x-action
               :sort (not externs)
               :keymap counsel-describe-map
               :initial-input initial-input
@@ -1834,12 +1834,12 @@ choose between `yes-or-no-p' and `y-or-n-p'; otherwise default to
                         'counsel-find-file-move))
 
 (defun counsel-find-file-mkdir-action (_x)
-  "Create a directory from `ivy-text'."
+  "Create a directory and any nonexistent parent dirs from `ivy-text'."
   (let ((dir (file-name-as-directory
               (expand-file-name ivy-text ivy--directory)))
         (win (and (not (eq ivy-exit 'done))
                   (active-minibuffer-window))))
-    (make-directory dir)
+    (make-directory dir t)
     (when win (with-selected-window win (ivy--cd dir)))))
 
 (ivy-set-actions
@@ -1985,29 +1985,31 @@ one that exists will be used.")
   "Return a command that filters a file list to match ivy candidates.
 If USE-IGNORE is non-nil, try to generate a command that respects
 `counsel-find-file-ignore-regexp'."
-  (let ((regex ivy--old-re)
-        (filter-cmd (cl-find-if
-                     (lambda (x)
-                       (executable-find
-                        (car (split-string (car x)))))
-                     counsel-file-name-filter-alist))
-        cmd)
-    (when (and use-ignore ivy-use-ignore
-               counsel-find-file-ignore-regexp
-               (cdr filter-cmd)
-               (not (string-match-p "\\`\\." ivy-text))
-               (not (string-match-p counsel-find-file-ignore-regexp
-                                    (or (car ivy--old-cands) ""))))
-      (let ((ignore-re (list (counsel--elisp-to-pcre
-                              counsel-find-file-ignore-regexp))))
-        (setq regex (if (stringp regex)
-                        (list ignore-re (cons regex t))
-                      (cons ignore-re regex)))))
-    (setq cmd (format (car filter-cmd)
-                      (counsel--elisp-to-pcre regex (cdr filter-cmd))))
-    (if (string-match-p "csh\\'" shell-file-name)
-        (replace-regexp-in-string "\\?!" "?\\\\!" cmd)
-      cmd)))
+  (let ((regex ivy--old-re))
+    (if (= 0 (length regex))
+        "cat"
+      (let ((filter-cmd (cl-find-if
+                         (lambda (x)
+                           (executable-find
+                            (car (split-string (car x)))))
+                         counsel-file-name-filter-alist))
+            cmd)
+        (when (and use-ignore ivy-use-ignore
+                   counsel-find-file-ignore-regexp
+                   (cdr filter-cmd)
+                   (not (string-match-p "\\`\\." ivy-text))
+                   (not (string-match-p counsel-find-file-ignore-regexp
+                                        (or (car ivy--old-cands) ""))))
+          (let ((ignore-re (list (counsel--elisp-to-pcre
+                                  counsel-find-file-ignore-regexp))))
+            (setq regex (if (stringp regex)
+                            (list ignore-re (cons regex t))
+                          (cons ignore-re regex)))))
+        (setq cmd (format (car filter-cmd)
+                          (counsel--elisp-to-pcre regex (cdr filter-cmd))))
+        (if (string-match-p "csh\\'" shell-file-name)
+            (replace-regexp-in-string "\\?!" "?\\\\!" cmd)
+          cmd)))))
 
 (defun counsel--occur-cmd-find ()
   (let ((cmd (format
@@ -2202,6 +2204,49 @@ When INITIAL-INPUT is non-nil, use it in the minibuffer during completion."
  '(("j" find-file-other-window "other window")
    ("f" find-file-other-frame "other frame")
    ("x" counsel-find-file-extern "open externally")))
+
+(defun counsel-buffer-or-recentf-candidates ()
+  "Return candidates for `counsel-buffer-or-recentf'."
+  (require 'recentf)
+  (recentf-mode)
+  (let ((buffers
+         (delq nil
+               (mapcar (lambda (b)
+                         (when (buffer-file-name b)
+                           (buffer-file-name b)))
+                       (buffer-list)))))
+    (append
+     buffers
+     (cl-remove-if (lambda (f) (member f buffers))
+                   (mapcar #'substring-no-properties recentf-list)))))
+
+;;;###autoload
+(defun counsel-buffer-or-recentf ()
+  "Find a buffer visiting a file or file on `recentf-list'."
+  (interactive)
+  (ivy-read "Buffer File or Recentf: " (counsel-buffer-or-recentf-candidates)
+            :action (lambda (s)
+                      (with-ivy-window
+                        (if (bufferp s)
+                            (switch-to-buffer s)
+                          (find-file s))))
+            :require-match t
+            :caller 'counsel-buffer-or-recentf))
+
+(ivy-set-actions
+ 'counsel-buffer-or-recentf
+ '(("j" find-file-other-window "other window")
+   ("f" find-file-other-frame "other frame")
+   ("x" counsel-find-file-extern "open externally")))
+
+(defun counsel-buffer-or-recentf-transformer (var)
+  "Propertize VAR if it's a buffer visiting a file."
+  (if (member var (mapcar #'buffer-file-name (buffer-list)))
+      (ivy-append-face var 'ivy-highlight-face)
+    var))
+
+(ivy-set-display-transformer
+ 'counsel-buffer-or-recentf 'counsel-buffer-or-recentf-transformer)
 
 ;;** `counsel-bookmark'
 (defcustom counsel-bookmark-avoid-dired nil
@@ -2852,7 +2897,10 @@ This uses `counsel-ag' with `counsel-ack-base-command' replacing
 
 
 ;;** `counsel-rg'
-(defcustom counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
+(defcustom counsel-rg-base-command
+  (if (memq system-type '(ms-dos windows-nt))
+      "rg -S --no-heading --line-number --color never %s ."
+    "rg -S --no-heading --line-number --color never %s")
   "Alternative to `counsel-ag-base-command' using ripgrep.
 
 Note: don't use single quotes for the regex."
@@ -5776,6 +5824,20 @@ Additional actions:\\<ivy-minibuffer-map>
  'counsel-minor
  `(("d" ,(lambda (x) (find-function (cdr x))) "definition")
    ("h" ,(lambda (x) (describe-function (cdr x))) "help")))
+
+;;;###autoload
+(defun counsel-major ()
+  (interactive)
+  (ivy-read "Major modes: " obarray
+            :predicate (lambda (f)
+                         (and (commandp f) (string-match "-mode$" (symbol-name f))
+                              (or (and (autoloadp (symbol-function f))
+                                       (let ((doc-split (help-split-fundoc (documentation f) f)))
+                                         ;; major mode starters have no arguments
+                                         (and doc-split (null (cdr (read (car doc-split)))))))
+                                  (null (help-function-arglist f)))))
+            :action #'counsel-M-x-action
+            :caller 'counsel-major))
 
 ;;* `counsel-mode'
 (defvar counsel-mode-map
