@@ -3,7 +3,8 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "counsel" "counsel.el" (23912 48192 48694 744000))
+;;;### (autoloads nil "counsel" "counsel.el" (23934 21980 140696
+;;;;;;  59000))
 ;;; Generated autoloads from counsel.el
 
 (autoload 'counsel-el "counsel" "\
@@ -492,6 +493,13 @@ Show a list of all W3C web colors for use in CSS.
 
 You can insert or kill the name or hexadecimal RGB value of the
 selected color.
+
+\(fn)" t nil)
+
+(autoload 'counsel-fonts "counsel" "\
+Show a list of all supported font families for a particular frame.
+
+You can insert or kill the name of the selected font.
 
 \(fn)" t nil)
 

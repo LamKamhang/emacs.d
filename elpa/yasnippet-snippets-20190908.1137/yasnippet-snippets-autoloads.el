@@ -4,7 +4,7 @@
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
 ;;;### (autoloads nil "yasnippet-snippets" "yasnippet-snippets.el"
-;;;;;;  (23912 48175 300324 739000))
+;;;;;;  (23934 21954 180695 267000))
 ;;; Generated autoloads from yasnippet-snippets.el
 
 (autoload 'yasnippet-snippets-initialize "yasnippet-snippets" "\
@@ -16,8 +16,8 @@ Load the `yasnippet-snippets' snippets directory.
 
 ;;;***
 
-;;;### (autoloads nil nil ("yasnippet-snippets-pkg.el") (23912 48180
-;;;;;;  386866 743000))
+;;;### (autoloads nil nil ("yasnippet-snippets-pkg.el") (23934 21969
+;;;;;;  580695 737000))
 
 ;;;***
 
