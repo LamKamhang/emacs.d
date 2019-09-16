@@ -57,7 +57,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (origami company-c-headers company flycheck-pos-tip fuzzy rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper)))
+    (projectile neotree origami company-c-headers company flycheck-pos-tip fuzzy rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
@@ -177,6 +177,14 @@
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 
+;;navigate tree
+(add-to-list 'load-path "/some/path/neotree")
+(require 'neotree)
+(global-set-key [f12] 'neotree-toggle)
+
+;;project manager
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 ;; ------------------------------------------------------------------------------
 ;; shortcut
 ;; ------------------------------------------------------------------------------
