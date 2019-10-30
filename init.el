@@ -57,7 +57,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (projectile neotree origami company-c-headers company flycheck-pos-tip fuzzy rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper)))
+    (gnu-elpa-keyring-update projectile neotree origami company-c-headers company flycheck-pos-tip fuzzy rust-mode ace-window gh-md markdown-mode cmake-mode flycheck ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses counsel swiper)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil))

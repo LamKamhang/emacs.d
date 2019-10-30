@@ -1,1 +1,1 @@
-nil
+("~/.emacs.d/" "~/Repos/lab_info_reports/" "~/Repos/MassSpringSimulation/" "~/Repos/MarvelPhysics/" "~/Repos/PhysIKA/" "~/Repos/LamKamhang.github.io/")
