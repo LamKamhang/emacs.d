@@ -1,4 +1,4 @@
-;;; init.el --- my config file for emacs
+;;; init.el --- my config file for emacs -*- lexical-binding: t -*-
 
 ;; Author: LamKamhang
 
@@ -56,6 +56,9 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
+;;----------------------------------------------------------------------------
+;; Custom config
+;;----------------------------------------------------------------------------
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -74,36 +77,19 @@
  '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
-    ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" . t)))
+    ("947190b4f17f78c39b0ab1ea95b1e6097cc9202d55c73a702395fc817f899393" . t)))
  '(display-time-mode t)
  '(fringe-mode 0 nil (fringe))
  '(package-selected-packages
    (quote
-    (uptimes dotenv-mode daemons dsvn htmlize lua-mode gnuplot flycheck-ledger ledger-mode origami regex-tool info-colors flycheck-clojure cider elein cljsbuild-mode clojure-mode slime-company hippie-expand-slime slime cask-mode cl-libify flycheck-package highlight-quoted macrostep cl-lib-highlight aggressive-indent immortal-scratch auto-compile ipretty elisp-slime-nav paredit-everywhere paredit nginx-mode company-terraform terraform-mode docker-compose-mode dockerfile-mode docker yaml-mode toml-mode flycheck-rust racer rust-mode sqlformat projectile-rails yard-mode bundler goto-gem yari robe ruby-compilation inf-ruby rspec-mode ruby-hash-syntax psci psc-ide purescript-mode flycheck-elm elm-test-runner elm-mode dhall-mode reformatter dante haskell-mode company-anaconda anaconda-mode pip-requirements restclient httprepl haml-mode css-eldoc skewer-less sass-mode rainbow-mode tagedit org-pomodoro writeroom-mode org-cliplink company-php smarty-mode php-mode add-node-modules-path skewer-mode js-comint prettier-js typescript-mode coffee-mode js2-mode json-mode erlang csv-mode markdown-mode textile-mode cmd-to-echo alert ibuffer-projectile github-review forge github-clone bug-reference-github yagist git-commit magit-todos magit git-timemachine gitconfig-mode gitignore-mode git-blamed vc-darcs darcsum browse-at-remote whitespace-cleanup-mode which-key highlight-escape-sequences whole-line-or-region move-dup page-break-lines multiple-cursors avy expand-region browse-kill-ring symbol-overlay rainbow-delimiters goto-line-preview beacon mode-line-bell vlf list-unicode-display unfill mmm-mode session switch-window company-quickhelp company ivy-xref swiper projectile counsel ivy smex flycheck-color-mode-line flycheck ibuffer-vc wgrep anzu diff-hl diredfl disable-mouse default-text-scale dimmer dracula-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized command-log-mode scratch diminish exec-path-from-shell gnu-elpa-keyring-update fullframe seq less-css-mode neotree company-c-headers flycheck-pos-tip fuzzy ace-window gh-md cmake-mode ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses)))
+    (uptimes dotenv-mode daemons dsvn htmlize lua-mode gnuplot flycheck-ledger ledger-mode origami regex-tool info-colors flycheck-clojure cider elein cljsbuild-mode clojure-mode slime-company hippie-expand-slime slime cask-mode cl-libify flycheck-package highlight-quoted macrostep cl-lib-highlight aggressive-indent immortal-scratch auto-compile ipretty elisp-slime-nav paredit-everywhere paredit nginx-mode company-terraform terraform-mode docker-compose-mode dockerfile-mode docker yaml-mode toml-mode flycheck-rust racer rust-mode sqlformat projectile-rails yard-mode bundler goto-gem yari robe ruby-compilation inf-ruby rspec-mode ruby-hash-syntax psci psc-ide purescript-mode flycheck-elm elm-test-runner elm-mode dhall-mode reformatter dante haskell-mode company-anaconda anaconda-mode pip-requirements restclient httprepl haml-mode css-eldoc skewer-less sass-mode rainbow-mode tagedit org-pomodoro writeroom-mode org-cliplink company-php smarty-mode php-mode add-node-modules-path skewer-mode js-comint prettier-js typescript-mode coffee-mode js2-mode json-mode erlang csv-mode markdown-mode textile-mode cmd-to-echo alert ibuffer-projectile github-review forge github-clone bug-reference-github yagist git-commit magit-todos magit git-timemachine gitconfig-mode gitignore-mode git-blamed vc-darcs darcsum browse-at-remote whitespace-cleanup-mode which-key highlight-escape-sequences whole-line-or-region move-dup page-break-lines multiple-cursors avy expand-region browse-kill-ring symbol-overlay rainbow-delimiters goto-line-preview beacon mode-line-bell vlf list-unicode-display unfill mmm-mode session switch-window company-quickhelp company ivy-xref swiper projectile counsel ivy smex flycheck-color-mode-line flycheck ibuffer-vc wgrep anzu diff-hl diredfl disable-mouse default-text-scale dimmer dracula-theme color-theme-sanityinc-tomorrow command-log-mode scratch diminish exec-path-from-shell gnu-elpa-keyring-update fullframe seq less-css-mode neotree company-c-headers flycheck-pos-tip fuzzy ace-window gh-md cmake-mode ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses)))
  '(scroll-bar-mode nil)
  '(session-use-package t nil (session))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
-
-(require 'cl)
-
-(defvar lamkamhang/packages package-selected-packages)
-
-(defun lamkamhang/packages-installed-p ()
-  (loop for pkg in lamkamhang/packages
-	when (not (package-installed-p pkg)) do (return nil)
-	finally (return t)))
-
-(unless (lamkamhang/packages-installed-p)
-  (message "%s" "Refreshing package database...")
-  (package-refresh-contents)
-  (dolist (pkg lamkamhang/packages)
-    (when (not (package-installed-p pkg))
-      (package-install pkg))))
-
-;; ------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; customize face
-;; ------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -123,6 +109,7 @@
      '(default ((t (:family #("新宋体" 0 3 (charset chinese-gbk)) :foundry "outline" :slant normal :weight normal :height 143 :width normal)))))
   )
 
+(require 'init-packages)
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
@@ -200,6 +187,8 @@
 (require 'init-common-lisp)
 
 (require 'init-proxy)
+(require 'init-navigate)
+(require 'init-parens)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
@@ -237,67 +226,17 @@
 (require 'init-locales)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;;(global-linum-mode t)
-(add-hook 'prog-mode-hook 'linum-mode)
-(add-hook 'text-mode-hook 'linum-mode)
-
-(setq company-show-numbers t)
-
-(require 'recentf)
-;; (require 'origami)
-(recentf-mode t)
-(setq recentf-max-menu-items 25)
-
-(global-hl-line-mode t)
-;; ------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; common configs
-;; ------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 (setq ring-bell-function 'ignore)
 (setq make-backup-files nil)
-(delete-selection-mode t)
 (global-auto-revert-mode t)
-
-(add-hook 'prog-mode-hook 'company-mode)
-(add-hook 'text-mode-hook 'company-mode)
-
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "SPC") nil)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "<return>") nil)
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous)
-  (define-key company-active-map (kbd "TAB") #'company-complete-selection)
-  (define-key company-active-map (kbd "<tab>") #'company-complete-selection)
-  (add-to-list 'company-backends 'company-c-headers))
 
 (add-hook
  'c++mode-hook
  (lambda ()
    (setq flycheck-gcc-language-standard "c++11")))
-
-(with-eval-after-load 'flycheck
-  (flycheck-pos-tip-mode))
 
 (add-hook
  'eshell-mode-hook
@@ -305,81 +244,12 @@
    (setq pcomplete-cycle-completions nil)))
 
 (defun my-eshell-remove-pcomplete ()
+  "Fix eshell complete error."
   (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
 (add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
 
-;;(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'prog-mode-hook #'flycheck-mode)
-
 (add-hook 'prog-mode-hook #'yas-minor-mode)
-;;(require 'yasnippet)
-;;(yas-global-mode 1)
 
-(require 'smartparens-config)
-(add-hook 'after-init-hook #'smartparens-global-mode)
-
-;;highlight parentheses
-(define-globalized-minor-mode global-highlight-parentheses-mode
-  highlight-parentheses-mode
-  (lambda ()
-    (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
-
-;;navigate tree
-(add-to-list 'load-path "/some/path/neotree")
-(require 'neotree)
-(global-set-key [f12] 'neotree-toggle)
-
-;;project manager
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-;; ------------------------------------------------------------------------------
-;; shortcut
-;; ------------------------------------------------------------------------------
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
-(defun open-my-init-file()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-(global-set-key (kbd "<f8>") 'open-my-init-file)
-(global-set-key (kbd "M-|") 'split-window-horizontally)
-(global-set-key (kbd "C-M-|") 'split-window-vertically)
-
-(defun split-balance-window-horizontally ()
-  (interactive)
-  (command-execute 'split-window-horizontally)
-  (command-execute 'balance-windows)
-  )
-
-(defun split-balance-window-vertically ()
-  (interactive)
-  (command-execute 'split-window-vertically)
-  (command-execute 'balance-windows)
-  )
-
-(global-set-key (kbd "M-\\") 'split-balance-window-horizontally)
-(global-set-key (kbd "C-M-\\") 'split-balance-window-vertically)
-
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
-;; enable this if you want `swiper' to use it
-(setq search-default-mode 'char-fold-to-regexp)
-(global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "<f6>") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-ag)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 (global-set-key (kbd "C-o") 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))

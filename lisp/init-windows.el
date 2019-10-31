@@ -36,6 +36,25 @@
 
 (global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer 'split-window-vertically))
 (global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer 'split-window-horizontally))
+(global-set-key (kbd "M-|") 'split-window-horizontally)
+(global-set-key (kbd "C-M-|") 'split-window-vertically)
+
+(defun split-balance-window-horizontally ()
+  "Split the window horizontally."
+  (interactive)
+  (command-execute 'split-window-horizontally)
+  (command-execute 'balance-windows)
+  )
+
+(defun split-balance-window-vertically ()
+  "Split the window vertically."
+  (interactive)
+  (command-execute 'split-window-vertically)
+  (command-execute 'balance-windows)
+  )
+
+(global-set-key (kbd "M-\\") 'split-balance-window-horizontally)
+(global-set-key (kbd "C-M-\\") 'split-balance-window-vertically)
 
 (defun sanityinc/toggle-delete-other-windows ()
   "Delete other windows in frame if any, or restore previous window config."
@@ -104,7 +123,6 @@ Call a second time to restore the original window configuration."
 
 (unless (memq window-system '(nt w32))
   (windmove-default-keybindings 'control))
-
 
 (provide 'init-windows)
 ;;; init-windows.el ends here

@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'color-theme-sanityinc-solarized)
 (require-package 'color-theme-sanityinc-tomorrow)
 (require-package 'dracula-theme)
 
@@ -27,19 +26,26 @@
 ;;------------------------------------------------------------------------------
 ;; Toggle between light and dark
 ;;------------------------------------------------------------------------------
-(defun light ()
-  "Activate a light color theme."
-  (interactive)
-  (setq custom-enabled-themes '(sanityinc-tomorrow-day))
-  (reapply-themes))
 
-(defun dark ()
-  "Activate a dark color theme."
+(defun tomorrow_bright_theme ()
+  "Activate a tomorror bright theme."
   (interactive)
   (setq custom-enabled-themes '(sanityinc-tomorrow-bright))
   (reapply-themes))
 
-(defun dracula ()
+(defun tomorrow_night_theme ()
+  "Activate a tomorror night color theme."
+  (interactive)
+  (setq custom-enabled-themes '(sanityinc-tomorrow-night))
+  (reapply-themes))
+
+(defun tsdh_dark_theme ()
+  "Activate a tsdh dark theme."
+  (interactive)
+  (setq custom-enabled-themes '(tsdh-dark))
+  (reapply-themes))
+
+(defun dracula_theme ()
   "Activate a dracula color theme."
   (interactive)
   (setq custom-enabled-themes '(dracula))

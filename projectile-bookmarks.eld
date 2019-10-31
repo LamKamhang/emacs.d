@@ -1,1 +1,1 @@
-("~/my.emacs.d/" "~/.emacs.d/")
+("~/my.emacs.d/" "~/Repos/MarvelPhysics/" "~/.emacs.d/")
