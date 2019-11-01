@@ -21,7 +21,8 @@
   ;; Official MELPA
   ;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   ;; Official MELPA Mirror, in case necessary.
-  (add-to-list 'package-archives (cons "melpa-tsinghua" (concat proto "://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")) t)
+  ;; (add-to-list 'package-archives (cons "melpa-tsinghua" (concat proto "://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")) t)
+  (add-to-list 'package-archives (cons "melpa-china" (concat proto "://elpa.emacs-china.org/melpa/")) t)
   )
 
 

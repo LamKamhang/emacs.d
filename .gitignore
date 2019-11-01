@@ -22,6 +22,9 @@ recentf
 # auto-complete-history.dat
 ac-comphist.dat
 
+# projectile-bookmarks
+projectile-bookmarks.eld
+
 /url/cache
 /.emacs.desktop
 /auto-save-list
