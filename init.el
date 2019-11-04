@@ -48,61 +48,60 @@
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
-
-;; (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
-;;----------------------------------------------------------------------------
-;; Custom config
-;;----------------------------------------------------------------------------
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(company-auto-complete t)
- '(company-auto-complete-chars "")
- '(company-c-headers-path-system
-   (quote
-    ("/usr/include/" "/usr/local/include/" "/usr/include/c++/7/")))
- '(company-idle-delay 0.1)
- '(company-minimum-prefix-length 2)
- '(counsel-bookmark-avoid-dired nil)
- '(cua-mode t nil (cua-base))
- '(custom-enabled-themes (quote (sanityinc-tomorrow-bright)))
- '(custom-safe-themes
-   (quote
-    ("947190b4f17f78c39b0ab1ea95b1e6097cc9202d55c73a702395fc817f899393" . t)))
- '(display-time-mode t)
- '(fringe-mode 0 nil (fringe))
- '(package-selected-packages
-   (quote
-    (uptimes dotenv-mode daemons dsvn htmlize lua-mode gnuplot flycheck-ledger ledger-mode origami regex-tool info-colors flycheck-clojure cider elein cljsbuild-mode clojure-mode slime-company hippie-expand-slime slime cask-mode cl-libify flycheck-package highlight-quoted macrostep cl-lib-highlight aggressive-indent immortal-scratch auto-compile ipretty elisp-slime-nav paredit-everywhere paredit nginx-mode company-terraform terraform-mode docker-compose-mode dockerfile-mode docker yaml-mode toml-mode flycheck-rust racer rust-mode sqlformat projectile-rails yard-mode bundler goto-gem yari robe ruby-compilation inf-ruby rspec-mode ruby-hash-syntax psci psc-ide purescript-mode flycheck-elm elm-test-runner elm-mode dhall-mode reformatter dante haskell-mode company-anaconda anaconda-mode pip-requirements restclient httprepl haml-mode css-eldoc skewer-less sass-mode rainbow-mode tagedit org-pomodoro writeroom-mode org-cliplink company-php smarty-mode php-mode add-node-modules-path skewer-mode js-comint prettier-js typescript-mode coffee-mode js2-mode json-mode erlang csv-mode markdown-mode textile-mode cmd-to-echo alert ibuffer-projectile github-review forge github-clone bug-reference-github yagist git-commit magit-todos magit git-timemachine gitconfig-mode gitignore-mode git-blamed vc-darcs darcsum browse-at-remote whitespace-cleanup-mode which-key highlight-escape-sequences whole-line-or-region move-dup page-break-lines multiple-cursors avy expand-region browse-kill-ring symbol-overlay rainbow-delimiters goto-line-preview beacon mode-line-bell vlf list-unicode-display unfill mmm-mode session switch-window company-quickhelp company ivy-xref swiper projectile counsel ivy smex flycheck-color-mode-line flycheck ibuffer-vc wgrep anzu diff-hl diredfl disable-mouse default-text-scale dimmer dracula-theme color-theme-sanityinc-tomorrow command-log-mode scratch diminish exec-path-from-shell gnu-elpa-keyring-update fullframe seq less-css-mode neotree company-c-headers flycheck-pos-tip fuzzy ace-window gh-md cmake-mode ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses)))
- '(scroll-bar-mode nil)
- '(session-use-package t nil (session))
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-;;----------------------------------------------------------------------------
-;; customize face
-;;----------------------------------------------------------------------------
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight normal :height 143 :width normal)))))
+;; ;;----------------------------------------------------------------------------
+;; ;; Custom config
+;; ;;----------------------------------------------------------------------------
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(column-number-mode t)
+;;  '(company-auto-complete t)
+;;  '(company-auto-complete-chars "")
+;;  '(company-c-headers-path-system
+;;    (quote
+;;     ("/usr/include/" "/usr/local/include/" "/usr/include/c++/7/")))
+;;  '(company-idle-delay 0.1)
+;;  '(company-minimum-prefix-length 2)
+;;  '(counsel-bookmark-avoid-dired nil)
+;;  '(cua-mode t nil (cua-base))
+;;  '(custom-enabled-themes (quote (sanityinc-tomorrow-bright)))
+;;  '(custom-safe-themes
+;;    (quote
+;;     ("947190b4f17f78c39b0ab1ea95b1e6097cc9202d55c73a702395fc817f899393" . t)))
+;;  '(display-time-mode t)
+;;  '(fringe-mode 0 nil (fringe))
+;;  '(package-selected-packages
+;;    (quote
+;;     (uptimes dotenv-mode daemons dsvn htmlize lua-mode gnuplot flycheck-ledger ledger-mode origami regex-tool info-colors flycheck-clojure cider elein cljsbuild-mode clojure-mode slime-company hippie-expand-slime slime cask-mode cl-libify flycheck-package highlight-quoted macrostep cl-lib-highlight aggressive-indent immortal-scratch auto-compile ipretty elisp-slime-nav paredit-everywhere paredit nginx-mode company-terraform terraform-mode docker-compose-mode dockerfile-mode docker yaml-mode toml-mode flycheck-rust racer rust-mode sqlformat projectile-rails yard-mode bundler goto-gem yari robe ruby-compilation inf-ruby rspec-mode ruby-hash-syntax psci psc-ide purescript-mode flycheck-elm elm-test-runner elm-mode dhall-mode reformatter dante haskell-mode company-anaconda anaconda-mode pip-requirements restclient httprepl haml-mode css-eldoc skewer-less sass-mode rainbow-mode tagedit org-pomodoro writeroom-mode org-cliplink company-php smarty-mode php-mode add-node-modules-path skewer-mode js-comint xref-js2 prettier-js typescript-mode coffee-mode js2-mode json-mode erlang csv-mode markdown-mode textile-mode cmd-to-echo alert ibuffer-projectile github-review forge github-clone bug-reference-github yagist git-commit magit-todos magit git-timemachine gitconfig-mode gitignore-mode git-blamed vc-darcs darcsum browse-at-remote whitespace-cleanup-mode which-key highlight-escape-sequences whole-line-or-region move-dup page-break-lines multiple-cursors avy expand-region browse-kill-ring symbol-overlay rainbow-delimiters goto-line-preview beacon mode-line-bell vlf list-unicode-display unfill mmm-mode session switch-window company-quickhelp company ivy-xref swiper projectile counsel ivy smex flycheck-color-mode-line flycheck ibuffer-vc wgrep-ag ag wgrep anzu diff-hl diredfl disable-mouse default-text-scale dimmer dracula-theme color-theme-sanityinc-tomorrow command-log-mode scratch diminish exec-path-from-shell gnu-elpa-keyring-update fullframe seq less-css-mode neotree company-c-headers flycheck-pos-tip fuzzy ace-window gh-md cmake-mode ggtags yasnippet-snippets yasnippet smartparens highlight-parentheses)))
+;;  '(scroll-bar-mode nil)
+;;  '(session-use-package t nil (session))
+;;  '(show-paren-mode t)
+;;  '(tool-bar-mode nil))
+;; ;;----------------------------------------------------------------------------
+;; ;; customize face
+;; ;;----------------------------------------------------------------------------
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight normal :height 143 :width normal)))))
 
-(if (eq window-system 'w32)
-    (custom-set-faces
-     '(default ((t (:family #("新宋体" 0 3 (charset chinese-gbk)) :foundry "outline" :slant normal :weight normal :height 143 :width normal)))))
-  )
+;; (if (eq window-system 'w32)
+;;     (custom-set-faces
+;;      '(default ((t (:family #("新宋体" 0 3 (charset chinese-gbk)) :foundry "outline" :slant normal :weight normal :height 143 :width normal)))))
+;;   )
 
-(require 'init-packages)
+;; (require 'init-packages)
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
@@ -179,8 +178,10 @@
 (require 'init-clojure-cider)
 (require 'init-common-lisp)
 
+(require 'init-ace-window)
 (require 'init-proxy)
 (require 'init-navigate)
+(require 'init-yasnippet)
 ;; (require 'init-parens)
 
 (when *spell-check-support-enabled*
@@ -214,38 +215,29 @@
   (add-hook 'after-init-hook 'global-eldoc-mode))
 
 ;;----------------------------------------------------------------------------
+;; Allow access from emacsclient
+;;----------------------------------------------------------------------------
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
+
+;;----------------------------------------------------------------------------
+;; Variables configured via the interactive 'customize' interface
+;;----------------------------------------------------------------------------
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+;;----------------------------------------------------------------------------
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
 
-
 ;;----------------------------------------------------------------------------
-;; common configs
+;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
-(setq ring-bell-function 'ignore)
-(setq make-backup-files nil)
-(global-auto-revert-mode t)
-
-(add-hook
- 'c++mode-hook
- (lambda ()
-   (setq flycheck-gcc-language-standard "c++11")))
-
-(add-hook
- 'eshell-mode-hook
- (lambda ()
-   (setq pcomplete-cycle-completions nil)))
-
-(defun my-eshell-remove-pcomplete ()
-  "Fix eshell complete error."
-  (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
-(add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
-
-(add-hook 'prog-mode-hook #'yas-minor-mode)
-
-
-(global-set-key (kbd "C-o") 'ace-window)
-(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+(require 'init-local nil t)
 
 (provide 'init)
 

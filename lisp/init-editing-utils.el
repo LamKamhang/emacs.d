@@ -335,7 +335,7 @@ With arg N, insert N newlines."
 
 (require-package 'which-key)
 (add-hook 'after-init-hook 'which-key-mode)
-(setq-default which-key-idle-delay 0.1)
+(setq-default which-key-idle-delay 0.2)
 (after-load 'which-key
   (diminish 'which-key-mode))
 
@@ -350,6 +350,10 @@ ORIG is the advised function, which is called with its ARGS."
 
 (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
+(defun open-my-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(global-set-key (kbd "<f8>") 'open-my-init-file)
 
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here

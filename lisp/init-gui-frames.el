@@ -18,10 +18,15 @@
 ;;----------------------------------------------------------------------------
 (setq use-file-dialog nil)
 (setq use-dialog-box nil)
+
+;;----------------------------------------------------------------------------
+;; my config
+;;----------------------------------------------------------------------------
 (setq inhibit-startup-screen t)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
-(global-hl-line-mode t)
+(display-time-mode t)
+
 ;;----------------------------------------------------------------------------
 ;; Window size and features
 ;;----------------------------------------------------------------------------
@@ -95,10 +100,6 @@
 
 (require-package 'disable-mouse)
 
-(defun open-my-init-file()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-(global-set-key (kbd "<f8>") 'open-my-init-file)
 
 (provide 'init-gui-frames)
 ;;; init-gui-frames.el ends here

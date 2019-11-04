@@ -18,10 +18,15 @@
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
+  (setq package-archives
+        '(("localelpa" . "~/.emacs.d/localelpa/")
+          ))
   ;; Official MELPA
   ;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   ;; Official MELPA Mirror, in case necessary.
   ;; (add-to-list 'package-archives (cons "melpa-tsinghua" (concat proto "://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")) t)
+  ;; (add-to-list 'package-archives '("localelpa" . "~/.emacs.d/localelpa") t)
+  (add-to-list 'package-archives (cons "gnu-china" (concat proto "://elpa.emacs-china.org/gnu/")) t)
   (add-to-list 'package-archives (cons "melpa-china" (concat proto "://elpa.emacs-china.org/melpa/")) t)
   )
 
@@ -94,7 +99,13 @@ locate PACKAGE."
 (fullframe list-packages quit-window)
 
 
+;; {{ Fixed expiring GNU ELPA keys
+;; GNU ELPA GPG key will expire on Sep-2019. So we need install this package to
+;; update key or else users can't install packages from GNU ELPA.
+;; @see https://www.reddit.com/r/emacs/comments/bn6k1y/updating_gnu_elpa_keys/
+;; BTW, this setup uses MELPA only. So GNU ELPA GPG key is not used.
 (require-package 'gnu-elpa-keyring-update)
+;; }}
 
 
 (defun sanityinc/set-tabulated-list-column-width (col-name width)
