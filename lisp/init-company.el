@@ -14,8 +14,9 @@
   (add-hook 'prog-mode-hook 'company-mode)
   (add-hook 'text-mode-hook 'company-mode)
   (after-load 'company
-    (dolist (backend '(company-eclim company-semantic company-c-headers))
+    (dolist (backend '(company-eclim company-semantic))
       (delq backend company-backends))
+    (add-to-list 'company-backends 'company-c-headers)
     (diminish 'company-mode)
     (define-key company-mode-map (kbd "M-/") 'company-complete)
     (define-key company-active-map (kbd "M-/") 'company-other-backend)
