@@ -74,7 +74,7 @@
  '(company-minimum-prefix-length 2)
  '(counsel-bookmark-avoid-dired nil)
  '(cua-mode t nil (cua-base))
- '(custom-enabled-themes (quote (dracula)))
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-bright)))
  '(custom-safe-themes
    (quote
     ("947190b4f17f78c39b0ab1ea95b1e6097cc9202d55c73a702395fc817f899393" . t)))
