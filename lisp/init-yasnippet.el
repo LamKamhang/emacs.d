@@ -6,7 +6,40 @@
 (when (require-package 'yasnippet)
   (yas-global-mode 1))
 (require-package 'yasnippet-snippets)
-;; (setq my-yasnippets (expand-file-name "~/my-yasnippets"))
+
+(when (maybe-require-package 'ivy-yasnippet)
+  (global-set-key (kbd "C-i") 'ivy-yasnippet)
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; # Options
+
+;; ## `ivy-yasnippet-expand-keys`
+
+;; Value that says how to expand keys before point.
+
+;; - If it’s nil, never expand keys.
+;; - If it’s the symbol `always`, always try to expand keys.
+;; - If it’s the symbol `smart`, expand when a matching candidate is selected for the first time. Once a candidate whose key doesn’t match whatever is before point is selected, behave like nil until the minibuffer exits.
+
+;; Default value is `smart`.
+
+;; ## `ivy-yasnippet-create-snippet-if-not-matched`
+
+;; If non-nil, allow exiting the minibuffer without exact match. Doing so will pop up a new buffer for writing a snippet.
+
+;; ## `ivy-yasnippet-new-snippet`
+
+;; Snippet to expand when creating new snippet. During expansion, `name` is bound to whatever was returned by `ivy-read`.
+
+;; ## `ivy-yasnippet-key`
+
+;; Face used for keys.
+
+;; ## `ivy-yasnippet-key-matching`
+
+;; Face used for keys that match whatever is before point.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (defun yasnippet-generic-setup-for-mode-hook ()
 ;;   (unless (is-buffer-file-temp) (yas-minor-mode 1)))

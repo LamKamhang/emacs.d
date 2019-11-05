@@ -5,11 +5,6 @@
 ;;----------------------------------------------------------------------------
 ;; common configs
 ;;----------------------------------------------------------------------------
-(setq make-backup-files nil)
-
-;; Global Auto Revert mode is a global minor mode that reverts any
-;; buffer associated with a file when the file changes on disk.
-(global-auto-revert-mode t)
 
 ;; (add-hook
 ;;  'eshell-mode-hook

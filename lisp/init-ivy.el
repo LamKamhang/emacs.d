@@ -75,7 +75,7 @@ instead."
   (after-load 'ivy
     (define-key ivy-mode-map (kbd "M-s /") 'swiper-thing-at-point))
   ;; enable this if you want `swiper' to use it
-  ;;(setq enable-recursive-minibuffers t)
+  (setq enable-recursive-minibuffers t)
   (setq search-default-mode 'char-fold-to-regexp)
   (global-set-key "\C-s" 'swiper)
   ;; (global-set-key (kbd "C-c C-r") 'ivy-resume)

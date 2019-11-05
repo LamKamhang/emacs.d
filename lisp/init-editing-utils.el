@@ -33,6 +33,8 @@
  truncate-lines nil
  truncate-partial-width-windows nil)
 
+;; Global Auto Revert mode is a global minor mode that reverts any
+;; buffer associated with a file when the file changes on disk.
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
