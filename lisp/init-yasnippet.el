@@ -8,7 +8,7 @@
 (require-package 'yasnippet-snippets)
 
 (when (maybe-require-package 'ivy-yasnippet)
-  (global-set-key (kbd "C-i") 'ivy-yasnippet)
+  (global-set-key (kbd "C-<tab>") 'ivy-yasnippet)
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
