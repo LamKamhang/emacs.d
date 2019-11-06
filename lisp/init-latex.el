@@ -8,7 +8,8 @@
 (mapc (lambda (mode)
         (add-hook 'LaTeX-mode-hook mode)); with AUCTeX LaTeX mode
       (list 'turn-on-cdlatex
-            'reftex-mode
+            'LaTeX-math-mode
+            'turn-on-reftex
             'outline-minor-mode
             'auto-fill-mode
             'flyspell-mode
