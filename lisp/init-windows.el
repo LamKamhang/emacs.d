@@ -36,8 +36,8 @@
 
 (global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer 'split-window-vertically))
 (global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer 'split-window-horizontally))
-(global-set-key (kbd "M-|") 'split-window-horizontally)
-(global-set-key (kbd "C-M-|") 'split-window-vertically)
+(global-set-key (kbd "C-M-|") (split-window-func-with-other-buffer 'split-window-vertically))
+(global-set-key (kbd "M-|") (split-window-func-with-other-buffer 'split-window-horizontally))
 
 (defun split-balance-window-horizontally ()
   "Split the window horizontally."
@@ -53,8 +53,8 @@
   (command-execute 'balance-windows)
   )
 
-(global-set-key (kbd "M-\\") 'split-balance-window-horizontally)
-(global-set-key (kbd "C-M-\\") 'split-balance-window-vertically)
+(global-set-key (kbd "M-\\") (split-window-func-with-other-buffer 'split-balance-window-horizontally))
+(global-set-key (kbd "C-M-\\") (split-window-func-with-other-buffer 'split-balance-window-vertically))
 
 (defun sanityinc/toggle-delete-other-windows ()
   "Delete other windows in frame if any, or restore previous window config."
