@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: My Snippet Header
+# contributor : kk
+# key: \head
+# --
+# -*- mode: snippet -*-
+# name: $1
+# key: ${2:trigger-key}${3:
+# keybinding : ${4:keybinding}}${5:
+# expand-env : (${6:})}
+# contributor : kk
+# --
+$0

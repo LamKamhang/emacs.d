@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: My File Description
+# key: \head
+# contributor : kk
+# group: doxygen
+# --
+/**
+ * @file ${1:`(file-name-nondirectory(buffer-file-name))`}
+ * @author LamKamhang (Cool_Lam@outlook.com)
+ * @brief ${2:A Documented file.}
+ * @version ${3:1.0}
+ * @date ${4:`(shell-command-to-string "echo -n $(date)")`}
+ ${5:*
+ * Detailed description
+ ${6:*
+ }}*
+ * @copyright Copyright (c) `(shell-command-to-string "echo -n $(date +%Y)")`
+ */

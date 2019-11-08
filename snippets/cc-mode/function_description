@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: My Function Description
+# key: \func
+# contributor : kk
+# group: doxygen
+# --
+/**
+ * @brief ${1:function description}
+ * @author LamKamhang (Cool_Lam@outlook.com)
+ ${2:*
+ *  Detailed description
+ ${3:*
+ }}*
+ * @param ${4:param}
+ * @return ${5:return type}
+ */
