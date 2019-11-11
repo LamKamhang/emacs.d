@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: cmake_sub_lib
+# key: \sublib
+# contributor : kk
+# --
+cmake_minimum_required(VERSION ${1:2.6})
+set(target_name ${2:sub_target_name})
+
+file(GLOB header ${3:*.h})
+file(GLOB source ${4:*.cc}${5: *.c})
+
+add_library(\${target_name}${6: SHARED} \${source})

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: cmake_sub_exe
+# key: \subexe
+# contributor : kk
+# --
+cmake_minimum_required(VERSION ${1:2.6})
+set(target_name ${2:sub_target_name})
+
+file(GLOB header ${3:*.h})
+file(GLOB source ${4:*.cc}${5: *.c})
+
+add_executable(\${target_name} \${source}${6: other dependent files})
+target_link_libraries(\${target_name}${7: other dependent libs})
