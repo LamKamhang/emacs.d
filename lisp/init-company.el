@@ -20,7 +20,7 @@
       (add-to-list 'company-backends 'company-c-headers)
       (setq-default company-c-headers-path-system
                     (quote
-                     ("." "/usr/include/" "/usr/local/include/" "/usr/include/c++/7/")))
+                     ("." "/usr/include/" "/usr/local/include/" "/usr/include/c++/7/" "/usr/include/eigen3/")))
       )
     (diminish 'company-mode)
     (define-key company-mode-map (kbd "M-/") 'company-complete)
