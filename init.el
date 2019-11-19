@@ -35,7 +35,17 @@
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
-
+(defconst *my-cpp-include-path* (quote
+                                 ("."
+                                  "/usr/include/"
+                                  "/usr/local/include/"
+                                  "/usr/include/c++/7/"
+                                  "/usr/include/eigen3/"
+                                  "/opt/intel/mkl/include/"
+                                  "/opt/intel/ipp/include/"
+                                  "/opt/intel/tbb/include/"
+                                  "/opt/intel/daal/include/"
+                                  "/opt/intel/pstl/include/")))
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;;----------------------------------------------------------------------------

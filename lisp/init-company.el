@@ -19,9 +19,7 @@
     (when (maybe-require-package 'company-c-headers)
       (add-to-list 'company-backends 'company-c-headers)
       (setq-default company-c-headers-path-system
-                    (quote
-                     ("." "/usr/include/" "/usr/local/include/" "/usr/include/c++/7/" "/usr/include/eigen3/")))
-      )
+                    *my-cpp-include-path*))
     (diminish 'company-mode)
     (define-key company-mode-map (kbd "M-/") 'company-complete)
     (define-key company-active-map (kbd "M-/") 'company-other-backend)

@@ -13,8 +13,13 @@
   (add-hook
    'c++mode-hook
    (lambda ()
-     (setq flycheck-gcc-language-standard "c++11")))
-  )
+     (setq flycheck-gcc-language-standard "c++11"))))
+
+;;; flycheck-pkg-config plugin
+(require-package 'flycheck-pkg-config)
+(add-hook 'c++-mode-hook
+          (lambda () (setq flycheck-clang-include-path
+                      *my-cpp-include-path*)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (with-eval-after-load 'flycheck ;;
