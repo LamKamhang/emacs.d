@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: ignore patch
+# key: \ig
+# contributor : kk
+# --
+# build folder
+build
+
+# vscode config
+.vscode
+
+# emacs desktop config
+.emacs.desktop.lock
+.emacs.desktop
+
+# private files
+_*
