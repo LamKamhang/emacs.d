@@ -27,6 +27,7 @@ projectile-bookmarks.eld
 
 /url/cache
 /.emacs.desktop
+/.emacs.desktop.lock
 /auto-save-list
 /network-security.data
 /.session
@@ -67,6 +68,7 @@ site-lisp/package/
 /ditaa*.jar
 /ido.last
 /recentf
+/.#recentf
 /viper
 /projectile-bookmarks.eld
 /anaconda-mode/
