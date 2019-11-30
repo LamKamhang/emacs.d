@@ -12,6 +12,7 @@
 ;; If you don't customize it, this is the theme you get.
 ;; (setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
 (setq-default custom-enabled-themes '(dracula))
+(custom-set-faces `(show-paren-match ((t (:background "#EE7785" :foreground "black" :weight bold)))))
 
 ;; Ensure that themes will be applied even if they have not been customized
 (defun reapply-themes ()
@@ -52,6 +53,7 @@
   "Activate a dracula color theme."
   (interactive)
   (setq custom-enabled-themes '(dracula))
+  (custom-set-faces `(show-paren-match ((t (:background "#EE7785" :foreground "black" :weight bold)))))
   (reapply-themes))
 
 (when (maybe-require-package 'dimmer)
