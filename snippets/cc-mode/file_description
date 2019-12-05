@@ -4,7 +4,7 @@
 # contributor : kk
 # group: doxygen
 # --
-/**
+/** -*- mode: ${7:c++} -*-
  * @file ${1:`(file-name-nondirectory(buffer-file-name))`}
  * @author LamKamhang (Cool_Lam@outlook.com)
  * @brief ${2:A Documented file.}
