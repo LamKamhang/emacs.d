@@ -16,7 +16,9 @@
 ;;   (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
 ;; (add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
 
-;; (add-hook 'prog-mode-hook #'yas-minor-mode)
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cuh\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.imp\\'" . c++-mode))
 
 (provide 'init-local)
 ;;; init-local.el ends here

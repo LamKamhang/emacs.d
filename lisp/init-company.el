@@ -10,6 +10,13 @@
 (add-to-list 'completion-styles 'initials t)
 
 (when (maybe-require-package 'company)
+  (setq company-require-match nil)            ; Don't require match, so you can still move your cursor as expected.
+  ;; (setq company-tooltip-align-annotations t)  ; Align annotation to the right side.
+  (setq company-eclim-auto-save nil)          ; Stop eclim auto save.
+  (setq company-dabbrev-downcase nil)         ; No downcase when completion.
+  (setq company-minimum-prefix-length 1)
+  (setq company-idle-delay 0.2)
+
   (add-hook 'after-init-hook 'global-company-mode)
   ;; (add-hook 'prog-mode-hook 'company-mode)
   ;; (add-hook 'text-mode-hook 'company-mode)
@@ -57,7 +64,13 @@
     (add-hook 'company-completion-started-hook 'sanityinc/page-break-lines-disable)
     (add-hook 'company-after-completion-hook 'sanityinc/page-break-lines-maybe-reenable)))
 
+;; (after-load 'company
+;;   (when (require-package 'company-flx)
+;;     (company-flx-mode +1)))
 
+(with-eval-after-load 'company
+  (when (require-package 'company-flx)
+    (company-flx-mode +1)))
 
 (provide 'init-company)
 ;;; init-company.el ends here
