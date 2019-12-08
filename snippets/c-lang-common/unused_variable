@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: unuse
+# key: uu
+# contributor : kk
+# --
+__attribute__((__unused__))

@@ -49,6 +49,12 @@
   (setq custom-enabled-themes '(tsdh-dark))
   (reapply-themes))
 
+(defun tango_dark_theme ()
+  "Activate a tango dark theme."
+  (interactive)
+  (setq custom-enabled-themes '(tango-dark))
+  (reapply-themes))
+
 (defun dracula_theme ()
   "Activate a dracula color theme."
   (interactive)
