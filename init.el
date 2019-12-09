@@ -146,7 +146,6 @@
 (require 'init-navigate)
 (require 'init-yasnippet)
 (require 'init-latex)
-;; (require 'init-parens)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
