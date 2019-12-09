@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: dir-local-template
-# key: \head
+# key: dl
 # contributor : kk
 # --
 ;;; Directory Local Variables

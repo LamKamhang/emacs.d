@@ -13,6 +13,7 @@
 ;; (setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
 (setq-default custom-enabled-themes '(dracula))
 (custom-set-faces `(show-paren-match ((t (:background "#EE7785" :foreground "black" :weight bold)))))
+(custom-set-faces `(region ((t (:background "#555753" :foreground "white")))))
 
 ;; Ensure that themes will be applied even if they have not been customized
 (defun reapply-themes ()
@@ -53,6 +54,7 @@
   "Activate a tango dark theme."
   (interactive)
   (setq custom-enabled-themes '(tango-dark))
+  (custom-set-faces `(region ((t (:background "#555753" :foreground "white")))))
   (reapply-themes))
 
 (defun dracula_theme ()
@@ -60,6 +62,7 @@
   (interactive)
   (setq custom-enabled-themes '(dracula))
   (custom-set-faces `(show-paren-match ((t (:background "#EE7785" :foreground "black" :weight bold)))))
+  (custom-set-faces `(region ((t (:background "#555753" :foreground "white")))))
   (reapply-themes))
 
 (when (maybe-require-package 'dimmer)
