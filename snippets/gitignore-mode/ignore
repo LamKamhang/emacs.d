@@ -4,8 +4,11 @@
 # contributor : kk
 # --
 # build folder
-build
-
+build*
+${1:
+# external folder
+external
+}
 # vscode config
 .vscode
 
