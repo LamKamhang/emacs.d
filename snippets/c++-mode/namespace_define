@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: namespace scope
+# key: nsp
+# contributor : kk
+# --
+namespace ${1:Namespace}
+{
+        `yas/selected-text`
+} // namespace $1

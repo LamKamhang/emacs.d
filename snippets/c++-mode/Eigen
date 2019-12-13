@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Eigen namespace
+# key: eg
+# contributor : kk
+# --
+using namespace Eigen;
