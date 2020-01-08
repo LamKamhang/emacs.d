@@ -4,7 +4,7 @@
 # contributor : kk
 # --
 find_package(${1:Package} REQUIRED)
-if (${2:PACKAGE}_FOUND)
+if (${2:${1:$(yas-text)}}_FOUND)
    message(STATUS "${2:$(yas-text)}_INCLUDE_DIRS: \${${2:$(yas-text)}_INCLUDE_DIRS}")
    message(STATUS "${2:$(yas-text)}_VERSION     : \${${${2:$(yas-text)}_VERSION_STRING}}")
    include_directories(\${${2:$(yas-text)}_INCLUDE_DIRS})
