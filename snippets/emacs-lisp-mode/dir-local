@@ -10,7 +10,8 @@
 ((prog-mode . ((eval . (let ((root (projectile-project-root)))
                        (setq-local local-project-include-path
                                    (list
-                                    (concat root ".")))
+                                    (concat root ".")${1:
+                                    (concat root ${2:customize_paths})}))
                        (setq-local company-c-headers-path-user
                                    (append company-c-headers-path-user
                                            local-project-include-path))
