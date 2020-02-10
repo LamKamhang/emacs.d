@@ -104,7 +104,8 @@ locate PACKAGE."
 ;; update key or else users can't install packages from GNU ELPA.
 ;; @see https://www.reddit.com/r/emacs/comments/bn6k1y/updating_gnu_elpa_keys/
 ;; BTW, this setup uses MELPA only. So GNU ELPA GPG key is not used.
-(require-package 'gnu-elpa-keyring-update)
+(let ((package-check-signature nil))
+  (require-package 'gnu-elpa-keyring-update))
 ;; }}
 
 

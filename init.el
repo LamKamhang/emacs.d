@@ -88,7 +88,6 @@
 (require 'init-recentf)
 (require 'init-smex)
 (require 'init-ivy)
-;;(require 'init-helm)
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
@@ -106,7 +105,7 @@
 (require 'init-projectile)
 
 (require 'init-compile)
-;;(require 'init-crontab)
+(require 'init-crontab)
 (require 'init-textile)
 (require 'init-markdown)
 (require 'init-csv)
@@ -145,7 +144,7 @@
 (require 'init-proxy)
 (require 'init-navigate)
 (require 'init-yasnippet)
-(require 'init-latex)
+;; (require 'init-latex)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
