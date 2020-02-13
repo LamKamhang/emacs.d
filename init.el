@@ -144,7 +144,7 @@
 (require 'init-proxy)
 (require 'init-navigate)
 (require 'init-yasnippet)
-;; (require 'init-latex)
+(require 'init-latex)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
