@@ -5,12 +5,13 @@
 ;;----------------------------------------------------------------------------
 ;; Stop C-z from minimizing windows under OS X
 ;;----------------------------------------------------------------------------
-(defun sanityinc/maybe-suspend-frame ()
-  (interactive)
-  (unless (and *is-a-mac* window-system)
-    (suspend-frame)))
+;; (defun sanityinc/maybe-suspend-frame ()
+;;   (interactive)
+;;   (unless (and *is-a-mac* window-system)
+;;     (suspend-frame)))
 
 ;; (global-set-key (kbd "C-z") 'sanityinc/maybe-suspend-frame)
+(global-set-key (kbd "C-z") nil)
 
 
 ;;----------------------------------------------------------------------------
