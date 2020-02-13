@@ -5,9 +5,9 @@
 (require-package 'auctex)
 (require-package 'cdlatex)
 
-;; change the prefix of outline mode to C-o
+;; ;; change the prefix of outline mode to C-c e
 (add-hook 'outline-minor-mode-hook
-          (lambda () (local-set-key "\C-o"
+          (lambda () (local-set-key "\C-z"
                                 outline-mode-prefix-map)))
 
 (setq-default TeX-master nil) ;; deal with multiple tex files.
@@ -42,6 +42,10 @@
                   '(
                     ;; ( ?\.   "\\dot"               nil        t   t   nil )
                     ;; ( ?\:   "\\ddot"              nil        t   t   nil )
+                    ))
+            (setq cdlatex-command-alist
+                  '(
+                    ;; ("big{" "Insert \\big\\{ \\big\\}" "\\big\\{ ? \\big\\" cdlatex-position-cursor nil nil t)
                     ))
             ))
 
