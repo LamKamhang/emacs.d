@@ -4,6 +4,7 @@
 
 (require-package 'color-theme-sanityinc-tomorrow)
 (require-package 'dracula-theme)
+(require-package 'monokai-theme)
 
 ;; Don't prompt to confirm theme safety. This avoids problems with
 ;; first-time startup on Emacs > 26.3.
@@ -29,20 +30,17 @@
 ;;------------------------------------------------------------------------------
 ;; Toggle between light and dark
 ;;------------------------------------------------------------------------------
+(defun monokai_theme ()
+  "Activate a monokai theme."
+  (interactive)
+  (setq custom-enabled-themes '(monokai))
+  (reapply-themes))
 
 (defun tomorrow_bright_theme ()
   "Activate a tomorror bright theme."
   (interactive)
   (setq custom-enabled-themes '(sanityinc-tomorrow-bright))
   (reapply-themes))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (defun tomorrow_night_theme ()                             ;;
-;;   "Activate a tomorror night color theme."                 ;;
-;;   (interactive)                                            ;;
-;;   (setq custom-enabled-themes '(sanityinc-tomorrow-night)) ;;
-;;   (reapply-themes))                                        ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun tsdh_dark_theme ()
   "Activate a tsdh dark theme."
