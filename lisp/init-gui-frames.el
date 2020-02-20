@@ -24,8 +24,6 @@
 ;; my config
 ;;----------------------------------------------------------------------------
 (setq inhibit-startup-screen t)
-(add-hook 'prog-mode-hook 'linum-mode)
-(add-hook 'text-mode-hook 'linum-mode)
 (display-time-mode t)
 
 ;;----------------------------------------------------------------------------
