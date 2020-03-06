@@ -22,8 +22,8 @@
             'hide-body
             t))
 
-(require-package 'company-auctex)
-(company-auctex-init)
+;; (require-package 'company-auctex)
+;; (company-auctex-init)
 
 ;; set XeTeX mode in TeX/LaTeX
 (add-hook 'LaTeX-mode-hook

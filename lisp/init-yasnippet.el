@@ -3,8 +3,11 @@
 ;;; Code:
 
 ;; my private snippets, should be placed before enabling yasnippet
-(when (require-package 'yasnippet)
-  (yas-global-mode 1))
+;; (when (require-package 'yasnippet)
+;;   (yas-global-mode 1))
+(require-package 'yasnippet)
+;; (yas-reload-all);
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 (require-package 'yasnippet-snippets)
 
 (when (maybe-require-package 'ivy-yasnippet)

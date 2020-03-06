@@ -153,6 +153,7 @@
 
 (require 'init-folding)
 (require 'init-dash)
+(require 'init-modeline)
 
 ;;(require 'init-twitter)
 ;; (require 'init-mu)
