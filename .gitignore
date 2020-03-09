@@ -80,3 +80,4 @@ site-lisp/package/
 .cache/
 /forge-database.sqlite
 /transient
+company-statistics-cache.el
