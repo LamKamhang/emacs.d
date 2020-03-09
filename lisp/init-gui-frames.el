@@ -2,35 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Stop C-z from minimizing windows under OS X
-;;----------------------------------------------------------------------------
-;; (defun sanityinc/maybe-suspend-frame ()
-;;   (interactive)
-;;   (unless (and *is-a-mac* window-system)
-;;     (suspend-frame)))
-
-;; (global-set-key (kbd "C-z") 'sanityinc/maybe-suspend-frame)
 (global-set-key (kbd "C-z") nil)
 
-
-;;----------------------------------------------------------------------------
+
 ;; Suppress GUI features
-;;----------------------------------------------------------------------------
+
 (setq use-file-dialog nil)
 (setq use-dialog-box nil)
-
-;;----------------------------------------------------------------------------
-;; my config
-;;----------------------------------------------------------------------------
 (setq inhibit-startup-screen t)
 (display-time-mode t)
 
-;;----------------------------------------------------------------------------
-;; Window size and features
-;;----------------------------------------------------------------------------
+;; NO tool bar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
+;; No scroll bar
 (when (fboundp 'set-scroll-bar-mode)
   (set-scroll-bar-mode nil))
 
@@ -61,11 +46,6 @@
     (when (and (<= frame-alpha-lower-limit newalpha) (>= 100 newalpha))
       (modify-frame-parameters frame (list (cons 'alpha newalpha))))))
 
-(when (and *is-a-mac* (fboundp 'toggle-frame-fullscreen))
-  ;; Command-Option-f to toggle fullscreen mode
-  ;; Hint: Customize `ns-use-native-fullscreen'
-  (global-set-key (kbd "M-ƒ") 'toggle-frame-fullscreen))
-
 ;; TODO: use seethru package instead?
 (global-set-key (kbd "M-C-8") (lambda () (interactive) (sanityinc/adjust-opacity nil -2)))
 (global-set-key (kbd "M-C-9") (lambda () (interactive) (sanityinc/adjust-opacity nil 2)))
@@ -93,7 +73,6 @@
 
 (require-package 'default-text-scale)
 (add-hook 'after-init-hook 'default-text-scale-mode)
-
 
 
 (require-package 'disable-mouse)

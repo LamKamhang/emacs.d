@@ -10,6 +10,22 @@
     `(eval-after-load ,feature
        '(progn ,@body))))
 
+;; {{ copied from http://ergoemacs.org/emacs/elisp_read_file_content.html
+(defun get-string-from-file (file)
+  "Return FILE's content."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (buffer-string)))
+
+(defun read-lines (file)
+  "Return a list of lines of FILE."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (split-string (buffer-string) "\n" t)))
+;; }}
+
+(defun nonempty-lines (s)
+  (split-string s "[\r\n]+" t))
 
 ;;----------------------------------------------------------------------------
 ;; Handier way to add modes to auto-mode-alist
@@ -19,7 +35,15 @@
   (dolist (pattern patterns)
     (add-to-list 'auto-mode-alist (cons pattern mode))))
 
-
+(defun font-belongs-to (pos fonts)
+  "Current font at POS belongs to FONTS."
+  (let* ((fontfaces (get-text-property pos 'face)))
+    (when (not (listp fontfaces))
+      (setf fontfaces (list fontfaces)))
+    (delq nil
+          (mapcar (lambda (f)
+                    (member f fonts))
+                  fontfaces))))
 ;;----------------------------------------------------------------------------
 ;; String utilities missing from core emacs
 ;;----------------------------------------------------------------------------
@@ -64,6 +88,45 @@
       (set-visited-file-name new-name)
       (rename-buffer new-name))))
 
+(defvar load-user-customized-major-mode-hook t)
+(defvar cached-normal-file-full-path nil)
+
+(defun buffer-too-big-p ()
+  ;; 5000 lines
+  (> (buffer-size) (* 5000 80)))
+
+(defun file-too-big-p (file)
+  (> (nth 7 (file-attributes file))
+     (* 5000 64)))
+
+(defvar force-buffer-file-temp-p nil)
+(defun is-buffer-file-temp ()
+  "If (buffer-file-name) is nil or a temp file or HTML file converted from org file."
+  (interactive)
+  (let* ((f (buffer-file-name)) (rlt t))
+    (cond
+     ((not load-user-customized-major-mode-hook)
+      (setq rlt t))
+     ((not f)
+      ;; file does not exist at all
+      ;; org-babel edit inline code block need calling hook
+      (setq rlt nil))
+     ((string= f cached-normal-file-full-path)
+      (setq rlt nil))
+     ((string-match (concat "^" temporary-file-directory) f)
+      ;; file is create from temp directory
+      (setq rlt t))
+     ((and (string-match "\.html$" f)
+           (file-exists-p (replace-regexp-in-string "\.html$" ".org" f)))
+      ;; file is a html file exported from org-mode
+      (setq rlt t))
+     (force-buffer-file-temp-p
+      (setq rlt t))
+     (t
+      (setq cached-normal-file-full-path f)
+      (setq rlt nil)))
+    rlt))
+
 ;;----------------------------------------------------------------------------
 ;; Browse current HTML file
 ;;----------------------------------------------------------------------------
@@ -76,6 +139,34 @@
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
+;;----------------------------------------------------------------------------
+;; Setup Language and Encode
+;;----------------------------------------------------------------------------
+(defun my-setup-language-and-encode (language-name coding-system)
+  "Set up LANGUAGE-NAME and CODING-SYSTEM at Windows.
+For example,
+- \"English\" and 'utf-16-le
+- \"Chinese-GBK\" and 'gbk"
+  (cond
+   ((eq system-type 'windows-nt)
+    (set-language-environment language-name)
+    (prefer-coding-system 'utf-8)
+    (set-terminal-coding-system coding-system)
+
+    (modify-coding-system-alist 'process "*" coding-system)
+    (defun my-windows-shell-mode-coding ()
+      (set-buffer-file-coding-system coding-system)
+      (set-buffer-process-coding-system coding-system coding-system))
+    (add-hook 'shell-mode-hook #'my-windows-shell-mode-coding)
+    (add-hook 'inferior-python-mode-hook #'my-windows-shell-mode-coding)
+
+    (defadvice org-babel-execute:python (around org-babel-execute:python-hack activate)
+      ;; @see https://github.com/Liu233w/.spacemacs.d/issues/6
+      (let* ((coding-system-for-write 'utf-8))
+        ad-do-it)))
+   (t
+    (set-language-environment "UTF-8")
+    (prefer-coding-system 'utf-8))))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

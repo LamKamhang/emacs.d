@@ -36,8 +36,11 @@
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *win64* (eq system-type 'windows-nt))
 (defconst *cygwin* (eq system-type 'cygwin) )
-(defconst *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
-(defconst *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)))
+(defconst *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
+(defconst *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)) )
+(defconst *emacs24* (>= emacs-major-version 24))
+(defconst *emacs25* (>= emacs-major-version 25))
+(defconst *emacs26* (>= emacs-major-version 26))
 (defconst *no-memory* (cond
                        (*is-a-mac*
                         ;; @see https://discussions.apple.com/thread/1753088
@@ -47,6 +50,17 @@
                        (*linux* nil)
                        (t nil)))
 
+(defconst *my-cpp-include-path* (quote
+                                 ("."
+                                  "/usr/include/"
+                                  "/usr/local/include/"
+                                  "/usr/include/c++/7/"
+                                  "/usr/include/eigen3/"
+                                  "/opt/intel/mkl/include/"
+                                  "/opt/intel/ipp/include/"
+                                  "/opt/intel/tbb/include/"
+                                  "/opt/intel/daal/include/"
+                                  "/opt/intel/pstl/include/")))
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;;----------------------------------------------------------------------------
@@ -60,15 +74,8 @@
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(defun require-init (pkg &optional maybe-disabled)
-  "Load PKG if MAYBE-DISABLED is nil or it's nil but start up in normal slowly."
-  (when (or (not maybe-disabled) (not (boundp 'startup-now)))
-    (load (file-truename (format "~/.emacs.d/lisp/%s" pkg)) t t)))
-
-(require-init 'init-autoload)
-;; (require-init 'init-modeline)
 (require 'init-utils)
-;; (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
+(require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
@@ -80,9 +87,6 @@
 (require-package 'diminish)
 (maybe-require-package 'scratch)
 (require-package 'command-log-mode)
-
-(when *spell-check-support-enabled*
-  (require 'init-spelling))
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
@@ -109,59 +113,93 @@
 (require 'init-whitespace)
 
 (require 'init-vc)
+(require 'init-darcs)
 (require 'init-git)
 (require 'init-github)
 
 (require 'init-projectile)
 
 (require 'init-compile)
+(require 'init-crontab)
+(require 'init-textile)
 (require 'init-markdown)
-;; (require 'init-org)
-(require 'init-latex)
 (require 'init-csv)
-
-(require 'init-cc)
-(require 'init-gud)
-(require 'init-gtags)
-(require 'init-ctags)
-(require 'init-python)
-(require 'init-rust)
-
-(require 'init-term-mode)
+(require 'init-erlang)
+(require 'init-javascript)
+(require 'init-php)
+;; (require 'init-org)
 (require 'init-nxml)
 (require 'init-html)
 (require 'init-css)
-(require 'init-javascript)
+(require 'init-haml)
 (require 'init-http)
+(require 'init-python)
+(require 'init-haskell)
+(require 'init-elm)
+(require 'init-purescript)
+;; (require 'init-ruby)
+(require 'init-rails)
 (require 'init-sql)
+(require 'init-rust)
+(require 'init-toml)
 (require 'init-yaml)
 (require 'init-docker)
+(require 'init-terraform)
+(require 'init-nix)
+(maybe-require-package 'nginx-mode)
 
 (require 'init-paredit)
 (require 'init-lisp)
 (require 'init-slime)
+(require 'init-clojure)
+(require 'init-clojure-cider)
 (require 'init-common-lisp)
 
+(require 'init-ace-window)
 (require 'init-proxy)
+(require 'init-navigate)
 (require 'init-yasnippet)
+(require 'init-latex)
+
+(when *spell-check-support-enabled*
+  (require 'init-spelling))
 
 (require 'init-misc)
-(require 'init-ffip)
 
 (require 'init-folding)
+(require 'init-dash)
 (require 'init-modeline)
 
+;;(require 'init-twitter)
+;; (require 'init-mu)
 (require 'init-ledger)
-
 ;; Extra packages which don't require any configuration
+
+(require-package 'gnuplot)
+(require-package 'lua-mode)
+(require-package 'htmlize)
+(require-package 'dsvn)
 (when *is-a-mac*
   (require-package 'osx-location))
 (unless (eq system-type 'windows-nt)
   (maybe-require-package 'daemons))
 (maybe-require-package 'dotenv-mode)
 
+(when (maybe-require-package 'uptimes)
+  (setq-default uptimes-keep-count 200)
+  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
+
 (when (fboundp 'global-eldoc-mode)
   (add-hook 'after-init-hook 'global-eldoc-mode))
+
+;;----------------------------------------------------------------------------
+;; Allow access from emacsclient
+;;----------------------------------------------------------------------------
+;; (add-hook 'after-init-hook
+;;           (lambda ()
+;;             (require 'server)
+;;             (unless (server-running-p)
+;;               (server-start))))
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface

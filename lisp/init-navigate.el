@@ -7,6 +7,5 @@
   (add-to-list 'load-path "/some/path/neotree")
   (global-set-key [f12] 'neotree-toggle))
 
-
 (provide 'init-navigate)
 ;;; init-navigate.el ends here

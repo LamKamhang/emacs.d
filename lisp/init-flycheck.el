@@ -8,23 +8,10 @@
   (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
   ;; (setq-default flycheck-highlighting-mode 'lines)
   (when (maybe-require-package 'flycheck-color-mode-line)
-    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
-
-  (add-hook
-   'c++mode-hook
-   (lambda ()
-     (setq flycheck-gcc-language-standard "c++11"))))
+    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)))
 
 ;;; flycheck-pkg-config plugin
 (require-package 'flycheck-pkg-config)
-(add-hook 'c++-mode-hook
-          (lambda () (setq flycheck-clang-include-path
-                      *my-cpp-include-path*)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (with-eval-after-load 'flycheck ;;
-;;   (flycheck-pos-tip-mode))      ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'init-flycheck)
 ;;; init-flycheck.el ends here

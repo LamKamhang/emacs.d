@@ -12,26 +12,37 @@
 (when (maybe-require-package 'company)
   (setq company-require-match nil)            ; Don't require match, so you can still move your cursor as expected.
   ;; (setq company-tooltip-align-annotations t)  ; Align annotation to the right side.
-  (setq company-eclim-auto-save nil)          ; Stop eclim auto save.
-  (setq company-dabbrev-downcase nil)         ; No downcase when completion.
+  ;; Stop eclim auto save.
+  (setq company-eclim-auto-save nil)
+  ;; No downcase when completion.
+  (setq company-dabbrev-downcase nil)
+  ;; Make previous/next selection in the popup cycles
+  ;; (setq company-selection-wrap-around t)
+  ;; Company should be case sensitive.
+  (setq company-dabbrev-ignore-case nil)
+  ;; I use company-ctags instead
+  (setq company-ctags-ignore-case t)
   (setq company-minimum-prefix-length 1)
   (setq company-idle-delay 0.2)
 
   (add-hook 'after-init-hook 'global-company-mode)
-  ;; (add-hook 'prog-mode-hook 'company-mode)
-  ;; (add-hook 'text-mode-hook 'company-mode)
   (after-load 'company
+    ;; backends
     (dolist (backend '(company-eclim company-semantic))
       (delq backend company-backends))
-    (when (maybe-require-package 'company-c-headers)
-      (add-to-list 'company-backends 'company-c-headers)
-      (setq-default company-c-headers-path-system
-                    *my-cpp-include-path*))
+    ;; @see https://github.com/company-mode/company-mode/issues/348
+    (require-package 'company-statistics)
+    (company-statistics-mode)
+    (require-package 'company-c-headers)
+    (push 'company-c-headers company-backends)
+    (require-package 'company-ctags)
+    (company-ctags-auto-setup)
+    ;; ;; can't work with TRAMP
+    ;; (setq company-backends (delete 'company-ropemacs company-backends))
+    ;; (setq company-backends (delete 'company-capf company-backends))
     (diminish 'company-mode)
     (define-key company-mode-map (kbd "M-/") 'company-complete)
     (define-key company-active-map (kbd "M-/") 'company-other-backend)
-    ;; (define-key company-active-map (kbd "C-n") 'company-select-next)
-    ;; (define-key company-active-map (kbd "C-p") 'company-select-previous)
     (define-key company-active-map (kbd "M-n") nil)
     (define-key company-active-map (kbd "M-p") nil)
     (define-key company-active-map (kbd "SPC") nil)

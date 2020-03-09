@@ -48,6 +48,8 @@
 
 (add-auto-mode 'conf-mode "^Procfile\\'")
 
+;; open header file under cursor
+(global-set-key (kbd "C-x C-o") 'ffap)
 
 (provide 'init-misc)
 ;;; init-misc.el ends here

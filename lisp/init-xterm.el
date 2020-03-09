@@ -14,8 +14,6 @@
   (xterm-mouse-mode 1) ; Mouse in a terminal (Use shift to paste with middle button)
   (mwheel-install))
 
-
-
 (add-hook 'after-make-console-frame-hooks 'sanityinc/console-frame-setup)
 
 (provide 'init-xterm)

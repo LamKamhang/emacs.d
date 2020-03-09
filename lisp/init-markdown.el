@@ -3,7 +3,7 @@
 ;;; Code:
 
 (when (maybe-require-package 'markdown-mode)
-  (add-auto-mode 'markdown-mode "\\.md\\.html\\'")
+  (add-auto-mode 'markdown-mode "\\.\\(m[k]d\\|markdown\\)\\'")
   (after-load 'whitespace-cleanup-mode
     (push 'markdown-mode whitespace-cleanup-mode-ignore-modes)))
 
