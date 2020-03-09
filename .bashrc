@@ -145,5 +145,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# added by travis gem
+# added by travis gem.
 [ -f /home/kk/.travis/travis.sh ] && source /home/kk/.travis/travis.sh
