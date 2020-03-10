@@ -4,7 +4,6 @@
 
 (require 'init-frame-hooks)
 
-(defconst *scroll-length* 1)
 (global-set-key [mouse-4] (lambda () (interactive) (scroll-down *scroll-length*)))
 (global-set-key [mouse-5] (lambda () (interactive) (scroll-up *scroll-length*)))
 

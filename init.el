@@ -84,6 +84,7 @@
 (when *spell-check-support-enabled*
   (require 'init-spelling))
 
+(defconst *scroll-length* 2)
 (require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)

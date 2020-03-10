@@ -7,7 +7,7 @@
   (setq mac-option-modifier 'none)
   ;; Make mouse wheel / trackpad scrolling less jerky
   (setq mouse-wheel-scroll-amount '(1
-                                    ((shift) . 5)
+                                    ((shift) . *scroll-length*)
                                     ((control))))
   (dolist (multiple '("" "double-" "triple-"))
     (dolist (direction '("right" "left"))
