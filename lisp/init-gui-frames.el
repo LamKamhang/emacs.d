@@ -12,6 +12,9 @@
 (setq inhibit-startup-screen t)
 (display-time-mode t)
 
+;; Linum mode
+(add-hook 'prog-mode-hook 'linum-mode)
+
 ;; NO tool bar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -75,8 +78,12 @@
 (add-hook 'after-init-hook 'default-text-scale-mode)
 
 
-(require-package 'disable-mouse)
 
+;; Hotkey to toggle some hiding gui modes
+(global-set-key (kbd "C-c h l") 'linum-mode)
+(global-set-key (kbd "C-c h s") 'scroll-bar-mode)
+(global-set-key (kbd "C-c h m") 'menu-bar-mode)
+(global-set-key (kbd "C-c h t") 'tool-bar-mode)
 
 (provide 'init-gui-frames)
 ;;; init-gui-frames.el ends here

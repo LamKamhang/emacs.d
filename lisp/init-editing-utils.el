@@ -89,8 +89,6 @@
 
 
 
-(add-hook 'prog-mode-hook 'linum-mode)
-
 (when (maybe-require-package 'goto-line-preview)
   (global-set-key [remap goto-line] 'goto-line-preview))
 
