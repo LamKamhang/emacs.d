@@ -186,13 +186,6 @@
 (global-set-key (kbd "C-c m e") 'mc/edit-ends-of-lines)
 (global-set-key (kbd "C-c m a") 'mc/edit-beginnings-of-lines)
 
-
-;; Train myself to use M-f and M-b instead
-(global-unset-key [M-left])
-(global-unset-key [M-right])
-
-
-
 (defun kill-back-to-indentation ()
   "Kill from point back to the first non-whitespace character on the line."
   (interactive)
@@ -217,13 +210,11 @@
 ;; use M-S-up and M-S-down, which will work even in lisp modes.
 ;;----------------------------------------------------------------------------
 (require-package 'move-dup)
-(global-set-key [M-up] 'md-move-lines-up)
-(global-set-key [M-down] 'md-move-lines-down)
 (global-set-key [M-S-up] 'md-move-lines-up)
 (global-set-key [M-S-down] 'md-move-lines-down)
 
-(global-set-key (kbd "C-c d") 'md-duplicate-down)
-(global-set-key (kbd "C-c u") 'md-duplicate-up)
+(global-set-key (kbd "C-c d n") 'md-duplicate-down)
+(global-set-key (kbd "C-c d p") 'md-duplicate-up)
 
 ;;----------------------------------------------------------------------------
 ;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
@@ -238,7 +229,6 @@
           ((backward-up-list arg)))))
 
 (global-set-key [remap backward-up-list] 'sanityinc/backward-up-sexp) ; C-M-u, C-M-up
-
 
 ;;----------------------------------------------------------------------------
 ;; Cut/copy the current line if no region is active
@@ -275,34 +265,34 @@
 
 
 
-;; (defun sanityinc/open-line-with-reindent (n)
-;;   "A version of `open-line' which reindents the start and end positions.
-;; If there is a fill prefix and/or a `left-margin', insert them
-;; on the new line if the line would have been blank.
-;; With arg N, insert N newlines."
-;;   (interactive "*p")
-;;   (let* ((do-fill-prefix (and fill-prefix (bolp)))
-;;          (do-left-margin (and (bolp) (> (current-left-margin) 0)))
-;;          (loc (point-marker))
-;;          ;; Don't expand an abbrev before point.
-;;          (abbrev-mode nil))
-;;     (delete-horizontal-space t)
-;;     (newline n)
-;;     (indent-according-to-mode)
-;;     (when (eolp)
-;;       (delete-horizontal-space t))
-;;     (goto-char loc)
-;;     (while (> n 0)
-;;       (cond ((bolp)
-;;              (if do-left-margin (indent-to (current-left-margin)))
-;;              (if do-fill-prefix (insert-and-inherit fill-prefix))))
-;;       (forward-line 1)
-;;       (setq n (1- n)))
-;;     (goto-char loc)
-;;     (end-of-line)
-;;     (indent-according-to-mode)))
+(defun sanityinc/open-line-with-reindent (n)
+  "A version of `open-line' which reindents the start and end positions.
+If there is a fill prefix and/or a `left-margin', insert them
+on the new line if the line would have been blank.
+With arg N, insert N newlines."
+  (interactive "*p")
+  (let* ((do-fill-prefix (and fill-prefix (bolp)))
+         (do-left-margin (and (bolp) (> (current-left-margin) 0)))
+         (loc (point-marker))
+         ;; Don't expand an abbrev before point.
+         (abbrev-mode nil))
+    (delete-horizontal-space t)
+    (newline n)
+    (indent-according-to-mode)
+    (when (eolp)
+      (delete-horizontal-space t))
+    (goto-char loc)
+    (while (> n 0)
+      (cond ((bolp)
+             (if do-left-margin (indent-to (current-left-margin)))
+             (if do-fill-prefix (insert-and-inherit fill-prefix))))
+      (forward-line 1)
+      (setq n (1- n)))
+    (goto-char loc)
+    (end-of-line)
+    (indent-according-to-mode)))
 
-;; (global-set-key (kbd "C-c C-o") 'sanityinc/open-line-with-reindent)
+(global-set-key (kbd "C-c C-o") 'sanityinc/open-line-with-reindent)
 
 
 ;;----------------------------------------------------------------------------
