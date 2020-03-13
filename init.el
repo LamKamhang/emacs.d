@@ -35,7 +35,7 @@
 
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *win64* (eq system-type 'windows-nt))
-(defconst *cygwin* (eq system-type 'cygwin) )
+(defconst *cygwin* (eq system-type 'cygwin))
 (defconst *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)))
 (defconst *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)))
 (defconst *no-memory* (cond
@@ -46,6 +46,10 @@
                             (* 4 1024 1024)))
                        (*linux* nil)
                        (t nil)))
+
+;; to avoid chinese fonts bug.
+(if *win64*
+    (custom-set-variables `(default ((t (:family "\272\332\314\345" :foundry "outline" :slant normal :weight normal :height 199 :width normal))))))
 
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
@@ -163,6 +167,15 @@
 
 (when (fboundp 'global-eldoc-mode)
   (add-hook 'after-init-hook 'global-eldoc-mode))
+
+;;----------------------------------------------------------------------------
+;; Allow access from emacsclient
+;;----------------------------------------------------------------------------
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
