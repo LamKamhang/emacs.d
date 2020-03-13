@@ -117,7 +117,7 @@
 
 (require 'init-compile)
 (require 'init-markdown)
-;; (require 'init-org)
+(require 'init-org)
 (require 'init-latex)
 (require 'init-csv)
 
