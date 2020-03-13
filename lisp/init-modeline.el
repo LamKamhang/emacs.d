@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (require-package 'spaceline)
-(spaceline-emacs-theme)
-;; (require-package 'doom-modeline)
-;; (doom-modeline-mode 1)
+(add-hook 'after-init-hook 'spaceline-emacs-theme)
 
 (provide 'init-modeline)
 ;;; init-modeline.el ends here
