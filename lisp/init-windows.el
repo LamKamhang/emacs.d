@@ -14,11 +14,11 @@
 
 
 
-;; Make "C-x o" prompt for a target window when there are more than 2
+;; Make "C-o" prompt for a target window when there are more than 2
 (require-package 'switch-window)
 (setq-default switch-window-shortcut-style 'alphabet)
 (setq-default switch-window-timeout nil)
-(global-set-key (kbd "C-x o") 'switch-window)
+(global-set-key (kbd "C-o") 'switch-window)
 
 
 ;;----------------------------------------------------------------------------
@@ -36,8 +36,6 @@
 
 (global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer 'split-window-vertically))
 (global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer 'split-window-horizontally))
-(global-set-key (kbd "C-M-|") (split-window-func-with-other-buffer 'split-window-vertically))
-(global-set-key (kbd "M-|") (split-window-func-with-other-buffer 'split-window-horizontally))
 
 (defun split-balance-window-horizontally ()
   "Split the window horizontally."
@@ -53,8 +51,8 @@
   (command-execute 'balance-windows)
   )
 
-(global-set-key (kbd "M-\\") (split-window-func-with-other-buffer 'split-balance-window-horizontally))
-(global-set-key (kbd "C-M-\\") (split-window-func-with-other-buffer 'split-balance-window-vertically))
+(global-set-key (kbd "M-|") (split-window-func-with-other-buffer 'split-balance-window-horizontally))
+(global-set-key (kbd "C-M-|") (split-window-func-with-other-buffer 'split-balance-window-vertically))
 
 (defun sanityinc/toggle-delete-other-windows ()
   "Delete other windows in frame if any, or restore previous window config."
@@ -150,14 +148,17 @@ Call a second time to restore the original window configuration."
     (2 . 2)
     (3 . 3)
     (4 . 4)
-    (5 . 0.61803398875))
+    (0 . 0.61803398875)
+    (9 . 0.5)
+    (8 . 0.33333333333)
+    (7 . 0.25))
   "The ratio dictionary.")
 
 (defun my-split-window-horizontally (&optional ratio)
   "Split window horizontally and resize the new window.
 'C-u number M-x my-split-window-horizontally' uses pre-defined
 ratio from `my-ratio-dict'.
-Always focus on bigger window."
+Always focus on new window."
   (interactive "P")
   (let* (ratio-val)
     (cond
@@ -168,15 +169,17 @@ Always focus on bigger window."
      (t
       (split-window-horizontally)))
     (set-window-buffer (next-window) (current-buffer))
-    (if (or (not ratio-val)
-            (>= ratio-val 1))
-        (windmove-right))))
+    (windmove-right)
+    ;; (if (or (not ratio-val)
+    ;;         (>= ratio-val 1))
+    ;;     (windmove-right))
+    ))
 
 (defun my-split-window-vertically (&optional ratio)
   "Split window vertically and resize the new window.
 'C-u number M-x my-split-window-vertically' uses pre-defined
 ratio from `my-ratio-dict'.
-Always focus on bigger window."
+Always focus on new window."
   (interactive "P")
   (let* (ratio-val)
     (cond
@@ -189,13 +192,14 @@ Always focus on bigger window."
     ;; open another window with current-buffer
     (set-window-buffer (next-window) (current-buffer))
     ;; move focus if new window bigger than current one
-    (if (or (not ratio-val)
-            (>= ratio-val 1))
-        (windmove-down))))
+    (windmove-down)
+    ;; (if (or (not ratio-val)
+    ;;         (>= ratio-val 1))
+    ;;     (windmove-down))
+    ))
 
-(when (require-package 'ace-window)
-  (global-set-key (kbd "C-o") 'ace-window)
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+(global-set-key (kbd "M-\\") 'my-split-window-horizontally)
+(global-set-key (kbd "C-M-\\") 'my-split-window-vertically)
 
 (provide 'init-windows)
 ;;; init-windows.el ends here
