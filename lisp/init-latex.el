@@ -60,6 +60,7 @@
                     ;; 4. rmdot:    t   if the dot on i and j has to be removed.              ;;
                     ;; 5. it        t   if italic correction is required.                     ;;
                     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                    ( ?s    "\\boldsymbol"            nil t   nil nil )
                     ))
             (setq cdlatex-command-alist
                   '(
