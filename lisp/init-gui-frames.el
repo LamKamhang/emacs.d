@@ -13,7 +13,7 @@
 (display-time-mode t)
 
 ;; Linum mode
-(add-hook 'prog-mode-hook 'linum-mode)
+;; (add-hook 'prog-mode-hook 'linum-mode)
 
 ;; NO tool bar
 (when (fboundp 'tool-bar-mode)
