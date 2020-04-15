@@ -103,17 +103,19 @@
       (eldoc-mode 1))))
 (add-hook 'c-mode-common-hook 'c-mode-common-hook-setup)
 
-(after-load 'flycheck-pkg-config
-  (add-hook
-   'c++-mode-hook
-   (lambda () (setq flycheck-clang-include-path
-                *my-cpp-include-path*))))
+
 
 (after-load 'flycheck
   (add-hook
    'c++mode-hook
    (lambda ()
      (setq flycheck-gcc-language-standard "c++11"))))
+
+(after-load 'flycheck
+  (add-hook
+   'c++-mode-hook
+   (lambda () (setq flycheck-clang-include-path
+                *my-cpp-include-path*))))
 
 (after-load 'company-c-headers
   (setq-default company-c-headers-path-system
