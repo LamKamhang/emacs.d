@@ -81,3 +81,4 @@ site-lisp/package/
 /forge-database.sqlite
 /transient
 company-statistics-cache.el
+.lsp-session*

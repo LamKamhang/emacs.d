@@ -75,13 +75,5 @@
     (add-hook 'company-completion-started-hook 'sanityinc/page-break-lines-disable)
     (add-hook 'company-after-completion-hook 'sanityinc/page-break-lines-maybe-reenable)))
 
-;; (after-load 'company
-;;   (when (require-package 'company-flx)
-;;     (company-flx-mode +1)))
-
-(with-eval-after-load 'company
-  (when (require-package 'company-flx)
-    (company-flx-mode +1)))
-
 (provide 'init-company)
 ;;; init-company.el ends here

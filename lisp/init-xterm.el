@@ -6,7 +6,9 @@
 
 ;; (global-set-key [mouse-4] (lambda () (interactive) (scroll-down *scroll-length*)))
 ;; (global-set-key [mouse-5] (lambda () (interactive) (scroll-up *scroll-length*)))
-(setq mouse-wheel-scroll-amount '(*scroll-length* ((shift) . (* 2 *scroll-length*)) ((control) . nil)))
+(setq mouse-wheel-scroll-amount '(*scroll-length*
+                                  ((shift) . (* 2 *scroll-length*))
+                                  ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
 (autoload 'mwheel-install "mwheel")

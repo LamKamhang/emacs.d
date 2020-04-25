@@ -45,6 +45,7 @@
   (advice-add 'recompile :around 'sanityinc/find-prev-compilation))
 
 (global-set-key [f6] 'recompile)
+(global-set-key [f5] 'compile)
 
 
 (defun sanityinc/shell-command-in-view-mode (start end command &optional output-buffer replace &rest other-args)

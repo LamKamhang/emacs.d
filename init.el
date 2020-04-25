@@ -31,8 +31,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-benchmarking) ;; Measure startup time
 
-(defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
-
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *win64* (eq system-type 'windows-nt))
 (defconst *cygwin* (eq system-type 'cygwin))
@@ -64,13 +62,7 @@
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(defun require-init (pkg &optional maybe-disabled)
-  "Load PKG if MAYBE-DISABLED is nil or it's nil but start up in normal slowly."
-  (when (or (not maybe-disabled) (not (boundp 'startup-now)))
-    (load (file-truename (format "~/.emacs.d/lisp/%s" pkg)) t t)))
 
-(require-init 'init-autoload)
-;; (require-init 'init-modeline)
 (require 'init-utils)
 ;; (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
@@ -80,13 +72,10 @@
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
-
+(require-package 'use-package)
 (require-package 'diminish)
 (maybe-require-package 'scratch)
 (require-package 'command-log-mode)
-
-(when *spell-check-support-enabled*
-  (require 'init-spelling))
 
 (defconst *scroll-length* 1)
 (require 'init-frame-hooks)
@@ -120,15 +109,11 @@
 (require 'init-projectile)
 
 (require 'init-compile)
-(require 'init-markdown)
 (require 'init-org)
 (require 'init-latex)
 (require 'init-csv)
 
 (require 'init-cc)
-(require 'init-gud)
-(require 'init-gtags)
-(require 'init-ctags)
 (require 'init-python)
 (require 'init-rust)
 
@@ -164,6 +149,10 @@
 (unless (eq system-type 'windows-nt)
   (maybe-require-package 'daemons))
 (maybe-require-package 'dotenv-mode)
+
+(when (maybe-require-package 'uptimes)
+  (setq-default uptimes-keep-count 200)
+  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
 
 (when (fboundp 'global-eldoc-mode)
   (add-hook 'after-init-hook 'global-eldoc-mode))
