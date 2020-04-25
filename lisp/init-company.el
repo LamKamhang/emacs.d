@@ -35,8 +35,8 @@
     (company-statistics-mode)
     (require-package 'company-c-headers)
     (push 'company-c-headers company-backends)
-    (require-package 'company-ctags)
-    (company-ctags-auto-setup)
+    ;; (require-package 'company-ctags)
+    ;; (company-ctags-auto-setup)
     ;; ;; can't work with TRAMP
     ;; (setq company-backends (delete 'company-ropemacs company-backends))
     ;; (setq company-backends (delete 'company-capf company-backends))

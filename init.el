@@ -95,6 +95,7 @@
 (require 'init-ivy)
 (require 'init-hippie-expand)
 (require 'init-company)
+(require 'init-lsp)
 (require 'init-windows)
 (require 'init-sessions)
 (require 'init-mmm)
