@@ -30,6 +30,9 @@
   (setq-default company-c-headers-path-system
                 *my-cpp-include-path*))
 
+(after-load 'lsp-mode
+  (add-hook 'before-save-hook 'lsp-format-buffer))
+
 ;; (defun c-wx-lineup-topmost-intro-cont (langelem)
 ;;   (save-excursion
 ;;     (beginning-of-line)
