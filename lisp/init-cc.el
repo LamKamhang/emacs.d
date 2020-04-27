@@ -30,6 +30,16 @@
   (setq-default company-c-headers-path-system
                 *my-cpp-include-path*))
 
+(require-package 'ccls)
+(use-package ccls
+  :config
+  (setq lsp-prefer-flymake nil)
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp))))
+(setq ccls-executable "ccls")
+(setq ccls-args '("--log-file=/tmp/ccls.log"))
+
 (after-load 'lsp-mode
   (add-hook 'before-save-hook 'lsp-format-buffer))
 

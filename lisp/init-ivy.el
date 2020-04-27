@@ -26,12 +26,13 @@
     (when (maybe-require-package 'diminish)
       (diminish 'ivy-mode)))
 
-  (defun sanityinc/enable-ivy-flx-matching ()
-    "Make `ivy' matching work more like IDO."
-    (interactive)
-    (require-package 'flx)
-    (setq-default ivy-re-builders-alist
-                  '((t . ivy--regex-fuzzy)))))
+  ;; (defun sanityinc/enable-ivy-flx-matching ()
+  ;;   "Make `ivy' matching work more like IDO."
+  ;;   (interactive)
+  ;;   (require-package 'flx)
+  ;;   (setq-default ivy-re-builders-alist
+  ;;                 '((t . ivy--regex-fuzzy))))
+  )
 
 (when (maybe-require-package 'counsel)
   (setq-default counsel-mode-override-describe-bindings t)
@@ -69,7 +70,7 @@ instead."
             (funcall search-function initial-input dir)))))
     (after-load 'ivy
       (add-to-list 'ivy-height-alist (cons 'counsel-ag 20)))
-    (global-set-key (kbd "M-?") 'sanityinc/counsel-search-project)))
+    (global-set-key (kbd "C-c p s f") 'sanityinc/counsel-search-project)))
 
 
 (when (maybe-require-package 'swiper)
@@ -97,8 +98,8 @@ instead."
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
-  (global-set-key (kbd "C-c c") 'counsel-compile)
-  (global-set-key (kbd "C-c b") 'counsel-bookmark)
+  (global-set-key (kbd "C-c C-c") 'counsel-compile)
+  (global-set-key (kbd "C-c C-b") 'counsel-bookmark)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
   )
 

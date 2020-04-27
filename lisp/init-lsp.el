@@ -6,7 +6,8 @@
 (use-package lsp-mode
   :commands lsp
   :config
-  (setq lsp-auto-guess-root t)
+  (setq lsp-auto-guess-root nil)
+  (setq lsp-file-watch-threshold 5000)
   :hook
   ((c-mode c++-mode cuda-mode objc-mode) . lsp)
   (lsp-mode . lsp-enable-which-key-integration))
