@@ -98,8 +98,8 @@ instead."
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
-  (global-set-key (kbd "C-c C-c") 'counsel-compile)
-  (global-set-key (kbd "C-c C-b") 'counsel-bookmark)
+  (global-set-key (kbd "C-c c") 'counsel-compile)
+  (global-set-key (kbd "C-c b") 'counsel-bookmark)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
   )
 

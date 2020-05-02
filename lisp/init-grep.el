@@ -16,12 +16,10 @@
 (when (and (executable-find "ag")
            (maybe-require-package 'ag))
   (require-package 'wgrep-ag)
-  (setq-default ag-highlight-search t)
-  (global-set-key (kbd "M-?") 'ag-project))
+  (setq-default ag-highlight-search t))
 
 (when (and (executable-find "rg")
-           (maybe-require-package 'rg))
-  (global-set-key (kbd "M-?") 'rg-project))
+           (maybe-require-package 'rg)))
 
 
 (provide 'init-grep)
