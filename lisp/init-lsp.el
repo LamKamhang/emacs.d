@@ -2,30 +2,33 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'lsp-mode)
 (use-package lsp-mode
+  :ensure t
   :commands lsp
   :config
   (setq lsp-auto-guess-root nil)
-  (setq lsp-file-watch-threshold 5000)
+  (setq lsp-file-watch-threshold 10000)
   :hook
   ((c-mode c++-mode cuda-mode objc-mode) . lsp)
   (lsp-mode . lsp-enable-which-key-integration))
 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
 (setq lsp-keymap-prefix "C-c l")
 
-(require-package 'lsp-ui)
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
 
-(require-package 'lsp-ivy)
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-ivy
+  :ensure t
+  :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs
+  :ensure t
+  :commands lsp-treemacs-errors-list)
 
 ;; optionally if you want to use debugger
-(require-package 'dap-mode)
-(use-package dap-mode)
+(use-package dap-mode
+  :ensure t)
 
-(require-package 'ivy-xref)
 (use-package ivy-xref
   :ensure t
   :init

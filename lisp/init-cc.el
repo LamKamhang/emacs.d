@@ -30,108 +30,66 @@
   (setq-default company-c-headers-path-system
                 *my-cpp-include-path*))
 
-(require-package 'ccls)
 (use-package ccls
+  :ensure t
   :config
-  ;; (setq lsp-prefer-flymake nil)
-  ;; (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  (setq lsp-prefer-flymake nil)
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 (setq ccls-executable "ccls")
 (setq ccls-args '("--log-file=/tmp/ccls.log"))
+(defun ccls/callee () (interactive) (lsp-ui-peek-find-custom "$ccls/call" '(:callee t)))
+(defun ccls/caller () (interactive) (lsp-ui-peek-find-custom "$ccls/call"))
+(defun ccls/vars (kind) (lsp-ui-peek-find-custom "$ccls/vars" `(:kind ,kind)))
+(defun ccls/base (levels) (lsp-ui-peek-find-custom "$ccls/inheritance" `(:levels ,levels)))
+(defun ccls/derived (levels) (lsp-ui-peek-find-custom "$ccls/inheritance" `(:levels ,levels :derived t)))
+(defun ccls/member (kind) (interactive) (lsp-ui-peek-find-custom "$ccls/member" `(:kind ,kind)))
+
+;; References w/ Role::Role
+(defun ccls/references-read () (interactive)
+       (lsp-ui-peek-find-custom "textDocument/references"
+                                (plist-put (lsp--text-document-position-params) :role 8)))
+
+;; References w/ Role::Write
+(defun ccls/references-write ()
+  (interactive)
+  (lsp-ui-peek-find-custom "textDocument/references"
+                           (plist-put (lsp--text-document-position-params) :role 16)))
+
+;; References w/ Role::Dynamic bit (macro expansions)
+(defun ccls/references-macro () (interactive)
+       (lsp-ui-peek-find-custom "textDocument/references"
+                                (plist-put (lsp--text-document-position-params) :role 64)))
+
+;; References w/o Role::Call bit (e.g. where functions are taken addresses)
+(defun ccls/references-not-call () (interactive)
+       (lsp-ui-peek-find-custom "textDocument/references"
+                                (plist-put (lsp--text-document-position-params) :excludeRole 32)))
+
+;; ccls/vars ccls/base ccls/derived ccls/members have a parameter while others are interactive.
+;; (ccls/base 1) direct bases
+;; (ccls/derived 1) direct derived
+;; (ccls/member 2) => 2 (Type) => nested classes / types in a namespace
+;; (ccls/member 3) => 3 (Func) => member functions / functions in a namespace
+;; (ccls/member 0) => member variables / variables in a namespace
+;; (ccls/vars 1) => field
+;; (ccls/vars 2) => local variable
+;; (ccls/vars 3) => field or local variable. 3 = 1 | 2
+;; (ccls/vars 4) => parameter
+
+;; ;; References whose filenames are under this project
+(after-load 'lsp-ui
+  (lsp-ui-peek-find-references nil (list :folders (vector (projectile-project-root))))
+  )
+;; (setq ccls-sem-highlight-method 'font-lock)
+(setq ccls-sem-highlight-method 'overlay)
+
+;; For rainbow semantic highlighting
+(ccls-use-default-rainbow-sem-highlight)
 
 ;; (after-load 'lsp-mode
 ;;   (add-hook 'before-save-hook 'lsp-format-buffer))
-
-;; (defun c-wx-lineup-topmost-intro-cont (langelem)
-;;   (save-excursion
-;;     (beginning-of-line)
-;;     (if (re-search-forward "EVT_" (line-end-position) t)
-;;         'c-basic-offset
-;;       (c-lineup-topmost-intro-cont langelem))))
-
-;; ;; c-default-style: https://www.gnu.org/software/emacs/manual/html_node/ccmode/Built_002din-Styles.html
-;; (setq c-default-style '((java-mode . "java")
-;;                         (awk-mode . "awk")
-;;                         (other . "linux"))
-;;       )
-
-;; (defun fix-c-indent-offset-according-to-syntax-context (key val)
-;;   ;; remove the old element
-;;   (setq c-offsets-alist (delq (assoc key c-offsets-alist) c-offsets-alist))
-;;   ;; new value
-;;   (add-to-list 'c-offsets-alist '(key . val)))
-
-;; (defun my-common-cc-mode-setup ()
-;;   "setup shared by all languages (java/groovy/c++ ...)"
-;;   (setq c-basic-offset 2)
-;;   ;; give me NO newline automatically after electric expressions are entered
-;;   (setq c-auto-newline nil)
-
-;;   ;; syntax-highlight aggressively
-;;   ;; (setq font-lock-support-mode 'lazy-lock-mode)
-;;   (setq lazy-lock-defer-contextually t)
-;;   (setq lazy-lock-defer-time 0)
-
-;;                                         ;make DEL take all previous whitespace with it
-;;   (c-toggle-hungry-state 1)
-
-;;   ;; indent
-;;   ;; google "C/C++/Java code indentation in Emacs" for more advanced skills
-;;   ;; C code:
-;;   ;;   if(1) // press ENTER here, zero means no indentation
-;;   (fix-c-indent-offset-according-to-syntax-context 'substatement 0)
-;;   ;;   void fn() // press ENTER here, zero means no indentation
-;;   (fix-c-indent-offset-according-to-syntax-context 'func-decl-cont 0))
-
-;; (defun my-c-mode-setup ()
-;;   "C/C++ only setup."
-;;   ;; @see http://stackoverflow.com/questions/3509919/ \
-;;   ;; emacs-c-opening-corresponding-header-file
-;;   (local-set-key (kbd "C-x C-o") 'ff-find-other-file)
-
-;;   (setq cc-search-directories '("." "/usr/include" "/usr/local/include/*" "../*/include" "$WXWIN/include"))
-
-;;   ;; {{ @see https://github.com/redguardtoo/cpputils-cmake
-;;   ;; In theory, you can write your own Makefile for `flyamke-mode' without cmake.
-;;   ;; Nobody actually does it in real world.
-;;   ;; So make sure cmake is used before uncomment below code.
-
-;;   ;; (when buffer-file-name
-;;   ;;   (flymake-mode 1)
-;;   ;;   (when (and (executable-find "cmake")
-;;   ;;              (not (string-match-p "^\\(/usr/local/include\\|/usr/src/linux/include\\)/.*"
-;;   ;;                                   buffer-file-name)))
-;;   ;;     (cppcm-reload-all)))
-
-;;   ;; }}
-
-;;   ;; wxWidgets setup
-;;   (c-set-offset 'topmost-intro-cont 'c-wx-lineup-topmost-intro-cont)
-
-;;   ;; debugging Emacs c code
-;;   (add-to-list 'imenu-generic-expression '(nil "^DEFUN *(\"\\([a-zA-Z0-9-]+\\)" 1))
-
-;;   ;; make a #define be left-aligned
-;;   (setq c-electric-pound-behavior (quote (alignleft))))
-
-;; ;; donot use c-mode-common-hook or cc-mode-hook because many major-modes use this hook
-;; (defun c-mode-common-hook-setup ()
-;;   (unless (is-buffer-file-temp)
-;;     (my-common-cc-mode-setup)
-;;     (unless (or (derived-mode-p 'java-mode) (derived-mode-p 'groovy-mode))
-;;       (my-c-mode-setup))
-
-;;     ;; gtags (GNU global) stuff
-;;     (when (and (executable-find "global")
-;;                ;; `man global' to figure out why
-;;                (not (string-match-p "GTAGS not found"
-;;                                     (shell-command-to-string "global -p"))))
-;;       ;; emacs 24.4+ will set up eldoc automatically.
-;;       ;; so below code is NOT needed.
-;;       (eldoc-mode 1))))
-;; (add-hook 'c-mode-common-hook 'c-mode-common-hook-setup)
-
 
 (provide 'init-cc)
 ;;; init-cc.el ends here
