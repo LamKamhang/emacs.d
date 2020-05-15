@@ -8,11 +8,12 @@
   :config
   (setq lsp-auto-guess-root nil)
   (setq lsp-file-watch-threshold 10000)
+  :custom
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (lsp-keymap-prefix "C-c l")
   :hook
   ((c-mode c++-mode cuda-mode objc-mode) . lsp)
   (lsp-mode . lsp-enable-which-key-integration))
-;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-(setq lsp-keymap-prefix "C-c l")
 
 (use-package lsp-ui
   :ensure t
