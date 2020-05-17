@@ -30,6 +30,7 @@
           (lambda()
             (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
             (setq TeX-command-default "XeLaTeX")
+            ;; (setq reftex-idle-time 0.2)
             (setq cdlatex-auto-help-delay 0.2)
             (setq TeX-save-query nil)
             (setq TeX-show-compilation t)
