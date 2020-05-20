@@ -25,7 +25,7 @@
 
 ;;navigate tree
 (when (require-package 'neotree)
-  (add-to-list 'load-path "/some/path/neotree")
+  ;; (add-to-list 'load-path "/some/path/neotree")
   (global-set-key [f12] 'neotree-toggle))
 
 (provide 'init-ffip)

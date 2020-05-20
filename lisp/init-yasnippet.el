@@ -25,5 +25,8 @@
   (yas-reload-all)
   (yas-minor-mode 1))
 
+(after-load 'yasnippet
+  (diminish 'yas-minor-mode))
+
 (provide 'init-yasnippet)
 ;;; init-yasnippet.el ends here

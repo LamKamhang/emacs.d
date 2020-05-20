@@ -24,23 +24,23 @@
   (add-hook 'after-init-hook 'global-company-mode)
   (after-load 'company
     ;; @see https://github.com/company-mode/company-mode/issues/348
-    (require-package 'company-c-headers)
-    (add-to-list 'company-backends 'company-c-headers)
-    (setq-default company-backends
-                  `((company-capf company-c-headers)
-                    (company-files company-dabbrev company-keywords company-yasnippet)
-                    company-nxml
-                    company-css
-                    company-capf
-                    company-clang
-                    company-xcode
-                    company-cmake
-                    company-eclim
-                    company-semantic
-                    ;;... other backends
-                    ))
+    ;; (require-package 'company-c-headers)
+    ;; (add-to-list 'company-backends 'company-c-headers)
+    ;; (setq-default company-backends
+    ;;               `((company-capf company-c-headers)
+    ;;                 (company-files company-dabbrev company-keywords company-yasnippet)
+    ;;                 company-nxml
+    ;;                 company-css
+    ;;                 company-capf
+    ;;                 company-clang
+    ;;                 company-xcode
+    ;;                 company-cmake
+    ;;                 company-eclim
+    ;;                 company-semantic
+    ;;                 ;;... other backends
+    ;;                 ))
 
-    (diminish 'company-mode)
+    ;; (diminish 'company-mode)
     (define-key company-active-map (kbd "M-/") 'company-other-backend)
     (define-key company-active-map (kbd "M-n") nil)
     (define-key company-active-map (kbd "M-p") nil)

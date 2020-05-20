@@ -26,9 +26,12 @@
    (lambda () (setq flycheck-clang-include-path
                 *my-cpp-include-path*))))
 
+(require-package 'company-c-headers)
 (after-load 'company-c-headers
   (setq-default company-c-headers-path-system
                 *my-cpp-include-path*))
+(after-load 'company
+  (add-to-list 'company-backends `(company-capf company-c-headers)))
 
 (use-package ccls
   :ensure t

@@ -316,7 +316,7 @@ With arg N, insert N newlines."
 (add-hook 'after-init-hook 'hes-mode)
 
 
-(require-package 'which-key)
+;; (require-package 'which-key)
 (add-hook 'after-init-hook 'which-key-mode)
 (setq-default which-key-idle-delay 0.2)
 (after-load 'which-key
