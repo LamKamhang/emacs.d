@@ -62,6 +62,7 @@
                     ;; 5. it        t   if italic correction is required.                     ;;
                     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                     ( ?s    "\\boldsymbol"            nil t   nil nil )
+                    ( ?o    "\\mathbb"                nil t   nil nil )
                     ))
             (setq cdlatex-command-alist
                   '(
@@ -78,6 +79,13 @@
                     ;; ("big{" "Insert \\big\\{ \\big\\}" "\\big\\{ ? \\big\\" cdlatex-position-cursor nil nil t)
                     ))
             ))
+;; (setq-default reftex-include-file-commands
+;;             (append reftex-include-file-commands
+;;                     (list "inputbody")))
+;; let the ref of math label does not contains ()
+(setq-default reftex-label-alist '(AMSTeX))
+(setq-default reftex-ref-style-default-list
+              (list "Cleveref" "Hyperref" "Default"))
 
 (provide 'init-latex)
 ;;; init-latex.el ends here

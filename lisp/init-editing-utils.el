@@ -24,6 +24,8 @@
  ediff-split-window-function 'split-window-horizontally
  ediff-window-setup-function 'ediff-setup-windows-plain
  indent-tabs-mode nil
+ create-lockfiles nil
+ auto-save-default nil
  make-backup-files nil
  mouse-yank-at-point t
  save-interprogram-paste-before-kill t
@@ -128,8 +130,7 @@
   (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
   (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous))
 (after-load 'page-break-lines
-  (push 'browse-kill-ring-mode page-break-lines-modes))
-
+  (add-to-list 'page-break-lines-modes 'browse-kill-ring-mode))
 
 ;;----------------------------------------------------------------------------
 ;; Don't disable narrowing commands
@@ -255,7 +256,7 @@
     (advice-add 'cua--activate-rectangle :after
                 (lambda (&rest _)
                   (when (bound-and-true-p mode-name)
-                    (push mode-name sanityinc/suspended-modes-during-cua-rect)
+                    (add-to-list 'sanityinc/suspended-modes-during-cua-rect mode-name)
                     (funcall mode-name 0))))))
 
 (sanityinc/suspend-mode-during-cua-rect-selection 'whole-line-or-region-local-mode)

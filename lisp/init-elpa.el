@@ -6,10 +6,10 @@
 
 
 ;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
-(let ((versioned-package-dir
-       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
-                         user-emacs-directory)))
-  (setq package-user-dir versioned-package-dir))
+;; (let ((versioned-package-dir
+;;        (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
+;;                          user-emacs-directory)))
+;;   (setq package-user-dir versioned-package-dir))
 
 
 
@@ -98,7 +98,7 @@ locate PACKAGE."
   (require-package 'seq)
   (add-hook 'after-init-hook
             (lambda () (package--save-selected-packages
-                   (seq-uniq (append sanityinc/required-packages package-selected-packages))))))
+                    (seq-uniq (append sanityinc/required-packages package-selected-packages))))))
 
 
 (require-package 'fullframe)

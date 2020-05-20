@@ -29,7 +29,7 @@
     (error "Emacs is too old -- this config requires v%s or higher" minver)))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(require 'init-benchmarking) ;; Measure startup time
+;; (require 'init-benchmarking) ;; Measure startup time
 
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *win64* (eq system-type 'windows-nt))
@@ -73,6 +73,11 @@
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
 (require-package 'use-package)
+(use-package esup
+  :ensure t
+  ;; To use MELPA Stable use ":pin mepla-stable",
+  :pin melpa-tsinghua
+  :commands (esup))
 (require-package 'diminish)
 (maybe-require-package 'scratch)
 (require-package 'command-log-mode)
@@ -147,11 +152,16 @@
 (require 'init-ledger)
 
 ;; Extra packages which don't require any configuration
+(require-package 'sudo-edit)
+(require-package 'gnuplot)
+(require-package 'lua-mode)
+(require-package 'htmlize)
 (when *is-a-mac*
   (require-package 'osx-location))
 (unless (eq system-type 'windows-nt)
   (maybe-require-package 'daemons))
 (maybe-require-package 'dotenv-mode)
+(maybe-require-package 'shfmt)
 
 (when (maybe-require-package 'uptimes)
   (setq-default uptimes-keep-count 200)

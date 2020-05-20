@@ -82,7 +82,7 @@
 (after-load 'lsp-ui
   (lsp-ui-peek-find-references nil (list :folders (vector (projectile-project-root))))
   )
-(setq ccls-sem-highlight-method 'font-lock)
+;; (setq ccls-sem-highlight-method 'font-lock)
 ;; (setq ccls-sem-highlight-method 'overlay)
 
 ;; For rainbow semantic highlighting
