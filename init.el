@@ -29,7 +29,7 @@
     (error "Emacs is too old -- this config requires v%s or higher" minver)))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-;; (require 'init-benchmarking) ;; Measure startup time
+(require 'init-benchmarking) ;; Measure startup time
 
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *win64* (eq system-type 'windows-nt))
