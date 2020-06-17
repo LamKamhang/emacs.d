@@ -56,39 +56,6 @@
 
 ;; ;; Lots of stuff from http://doc.norang.ca/org-mode.html
 
-;; ;; TODO: fail gracefully
-;; (defun sanityinc/grab-ditaa (url jar-name)
-;;   "Download URL and extract JAR-NAME as `org-ditaa-jar-path'."
-;;   ;; TODO: handle errors
-;;   (message "Grabbing %s for org." jar-name)
-;;   (let ((zip-temp (make-temp-name "emacs-ditaa")))
-;;     (unwind-protect
-;;         (progn
-;;           (when (executable-find "unzip")
-;;             (url-copy-file url zip-temp)
-;;             (shell-command (concat "unzip -p " (shell-quote-argument zip-temp)
-;;                                    " " (shell-quote-argument jar-name) " > "
-;;                                    (shell-quote-argument org-ditaa-jar-path)))))
-;;       (when (file-exists-p zip-temp)
-;;         (delete-file zip-temp)))))
-
-;; (after-load 'ob-ditaa
-;;   (unless (and (boundp 'org-ditaa-jar-path)
-;;                (file-exists-p org-ditaa-jar-path))
-;;     (let ((jar-name "ditaa0_9.jar")
-;;           (url "http://jaist.dl.sourceforge.net/project/ditaa/ditaa/0.9/ditaa0_9.zip"))
-;;       (setq org-ditaa-jar-path (expand-file-name jar-name (file-name-directory user-init-file)))
-;;       (unless (file-exists-p org-ditaa-jar-path)
-;;         (sanityinc/grab-ditaa url jar-name)))))
-
-;; (after-load 'ob-plantuml
-;;   (let ((jar-name "plantuml.jar")
-;;         (url "http://jaist.dl.sourceforge.net/project/plantuml/plantuml.jar"))
-;;     (setq org-plantuml-jar-path (expand-file-name jar-name (file-name-directory user-init-file)))
-;;     (unless (file-exists-p org-plantuml-jar-path)
-;;       (url-copy-file url org-plantuml-jar-path))))
-
-
 ;; ;; Re-align tags when window shape changes
 ;; (after-load 'org-agenda
 ;;   (add-hook 'org-agenda-mode-hook
@@ -340,10 +307,10 @@
 ;; (when (and *is-a-mac* (file-directory-p "/Applications/org-clock-statusbar.app"))
 ;;   (add-hook 'org-clock-in-hook
 ;;             (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e"
-;;                                 (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
+;;                                      (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
 ;;   (add-hook 'org-clock-out-hook
 ;;             (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e"
-;;                                 "tell application \"org-clock-statusbar\" to clock out"))))
+;;                                      "tell application \"org-clock-statusbar\" to clock out"))))
 
 
 ;; 
@@ -414,7 +381,6 @@
 ;;      (,(if (locate-library "ob-sh") 'sh 'shell) . t)
 ;;      (sql . t)
 ;;      (sqlite . t))))
-
 
 (provide 'init-org)
 ;;; init-org.el ends here

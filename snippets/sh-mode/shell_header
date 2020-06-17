@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: shell header
+# key: \h
+# contributor : kk
+# --
+#!/usr/bin/env bash
+
+# set -o errexit
+set -e
+
+$0
