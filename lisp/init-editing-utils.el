@@ -335,6 +335,7 @@ ORIG is the advised function, which is called with its ARGS."
 (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
 (defun open-my-init-file()
+  "Open my init file."
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f8>") 'open-my-init-file)
@@ -342,6 +343,26 @@ ORIG is the advised function, which is called with its ARGS."
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (global-set-key (kbd "C-<tab>") 'indent-for-tab-command)
+
+
+(defun sudo-save ()
+  "Save with sudo."
+  (interactive)
+  (if (not buffer-file-name)
+      (write-file (concat "/sudo:root@localhost:" (ido-read-file-name "File:")))
+    (write-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+(defun er-sudo-edit (&optional arg)
+  "Edit currently visited file as root.
+
+With a prefix ARG prompt for a file to visit.
+Will also prompt for a file to visit if current
+buffer is not visiting a file."
+  (interactive "P")
+  (if (or arg (not buffer-file-name))
+      (find-file (concat "/sudo:root@localhost:"
+                         (ido-read-file-name "Find file(as root): ")))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here
