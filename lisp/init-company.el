@@ -22,7 +22,7 @@
   (setq company-idle-delay 0.2)
 
   (add-hook 'after-init-hook 'global-company-mode)
-  (after-load 'company
+  (with-eval-after-load 'company
     ;; @see https://github.com/company-mode/company-mode/issues/348
     ;; (require-package 'company-c-headers)
     ;; (add-to-list 'company-backends 'company-c-headers)
@@ -58,8 +58,8 @@
 
 ;; Suspend page-break-lines-mode while company menu is active
 ;; (see https://github.com/company-mode/company-mode/issues/416)
-(after-load 'company
-  (after-load 'page-break-lines
+(with-eval-after-load 'company
+  (with-eval-after-load 'page-break-lines
     (defvar-local sanityinc/page-break-lines-on-p nil)
 
     (defun sanityinc/page-break-lines-disable (&rest ignore)

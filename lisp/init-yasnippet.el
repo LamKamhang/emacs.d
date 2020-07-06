@@ -15,7 +15,7 @@
   (when (maybe-require-package 'ivy-yasnippet)
     (global-set-key (kbd "C-c i") 'ivy-yasnippet))
 
-  (after-load 'yasnippet
+  (with-eval-after-load 'yasnippet
     (yas-reload-all)))
 
 (defun my-yas-reload-all ()
@@ -25,7 +25,7 @@
   (yas-reload-all)
   (yas-minor-mode 1))
 
-(after-load 'yasnippet
+(with-eval-after-load 'yasnippet
   (diminish 'yas-minor-mode))
 
 (provide 'init-yasnippet)

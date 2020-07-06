@@ -12,7 +12,7 @@
 
 ;;; flycheck-pkg-config plugin
 (require-package 'flycheck-pkg-config)
-(after-load 'flycheck
+(with-eval-after-load 'flycheck
   (diminish 'flycheck-mode))
 
 (provide 'init-flycheck)

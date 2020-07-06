@@ -14,23 +14,23 @@
                                   "/opt/intel/daal/include/"
                                   "/opt/intel/pstl/include/")))
 
-(after-load 'flycheck
+(with-eval-after-load 'flycheck
   (add-hook
    'c++mode-hook
    (lambda ()
      (setq flycheck-gcc-language-standard "c++11"))))
 
-(after-load 'flycheck
+(with-eval-after-load 'flycheck
   (add-hook
    'c++-mode-hook
    (lambda () (setq flycheck-clang-include-path
                 *my-cpp-include-path*))))
 
 (require-package 'company-c-headers)
-(after-load 'company-c-headers
+(with-eval-after-load 'company-c-headers
   (setq-default company-c-headers-path-system
                 *my-cpp-include-path*))
-(after-load 'company
+(with-eval-after-load 'company
   (add-to-list 'company-backends `(company-capf company-c-headers)))
 
 (use-package ccls
@@ -82,16 +82,16 @@
 ;; (ccls/vars 4) => parameter
 
 ;; ;; References whose filenames are under this project
-(after-load 'lsp-ui
+(with-eval-after-load 'lsp-ui
   (lsp-ui-peek-find-references nil (list :folders (vector (projectile-project-root))))
   )
 ;; (setq ccls-sem-highlight-method 'font-lock)
-;; (setq ccls-sem-highlight-method 'overlay)
+(setq ccls-sem-highlight-method 'overlay)
 
 ;; For rainbow semantic highlighting
 (ccls-use-default-rainbow-sem-highlight)
 
-;; (after-load 'lsp-mode
+;; (with-eval-after-load 'lsp-mode
 ;;   (add-hook 'before-save-hook 'lsp-format-buffer))
 
 (provide 'init-cc)
