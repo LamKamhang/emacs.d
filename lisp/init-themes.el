@@ -24,8 +24,8 @@
 
 ;; If you don't customize it, this is the theme you get.
 ;; (setq-default custom-enabled-themes '(dracula))
-(setq-default custom-enabled-themes '(tango-dark))
-(custom-set-faces `(region ((t (:background "#555753" :foreground "white")))))
+(setq-default custom-enabled-themes '(material))
+;; (custom-set-faces `(region ((t (:background "#555753" :foreground "white")))))
 
 ;; Ensure that themes will be applied even if they have not been customized
 (defun reapply-themes ()
