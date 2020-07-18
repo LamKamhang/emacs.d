@@ -14,6 +14,12 @@
                                   "/opt/intel/daal/include/"
                                   "/opt/intel/pstl/include/")))
 
+(require-package 'clang-format+)
+(with-eval-after-load 'clang-format+
+  (add-hook 'c-mode-common-hook #'clang-format+-mode)
+  )
+
+
 (with-eval-after-load 'flycheck
   (add-hook
    'c++mode-hook
