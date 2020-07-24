@@ -19,6 +19,12 @@
   (add-hook 'c-mode-common-hook #'clang-format+-mode)
   )
 
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (define-key c++-mode-map (kbd "<tab>") #'clang-format-region)))
+(add-hook 'c-mode-hook
+          (lambda ()
+            (define-key c-mode-map (kbd "<tab>") #'clang-format-region)))
 
 (with-eval-after-load 'flycheck
   (add-hook

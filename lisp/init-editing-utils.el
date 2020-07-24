@@ -342,7 +342,7 @@ ORIG is the advised function, which is called with its ARGS."
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(global-set-key (kbd "C-<tab>") 'indent-for-tab-command)
+;; (global-set-key (kbd "C-<tab>") 'indent-for-tab-command)
 
 
 (defun sudo-save ()
