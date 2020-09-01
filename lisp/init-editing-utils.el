@@ -342,7 +342,7 @@ ORIG is the advised function, which is called with its ARGS."
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; (global-set-key (kbd "C-<tab>") 'indent-for-tab-command)
+(global-set-key (kbd "C-<tab>") 'indent-for-tab-command)
 
 
 (defun sudo-save ()
@@ -363,6 +363,8 @@ buffer is not visiting a file."
       (find-file (concat "/sudo:root@localhost:"
                          (ido-read-file-name "Find file(as root): ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+(global-set-key (kbd "M-s i") 'imenu)
 
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here

@@ -14,17 +14,9 @@
                                   "/opt/intel/daal/include/"
                                   "/opt/intel/pstl/include/")))
 
-(require-package 'clang-format+)
-(with-eval-after-load 'clang-format+
-  (add-hook 'c-mode-common-hook #'clang-format+-mode)
-  )
-
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (define-key c++-mode-map (kbd "<tab>") #'clang-format-region)))
-(add-hook 'c-mode-hook
-          (lambda ()
-            (define-key c-mode-map (kbd "<tab>") #'clang-format-region)))
+(require-package 'google-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 (with-eval-after-load 'flycheck
   (add-hook
