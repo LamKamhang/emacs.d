@@ -8,6 +8,12 @@
   :config
   (setq lsp-auto-guess-root nil)
   (setq lsp-file-watch-threshold 10000)
+  (setq lsp-file-watch-ignored
+        (append lsp-file-watch-ignored
+                (list "[/\\\\]build-release$"
+                      "[/\\\\]build-debug$"
+                      "[/\\\\]build$"
+                      "[/\\\\]external$")))
   :custom
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (lsp-keymap-prefix "C-c l")
