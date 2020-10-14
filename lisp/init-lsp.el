@@ -13,7 +13,9 @@
                 (list "[/\\\\]build-release$"
                       "[/\\\\]build-debug$"
                       "[/\\\\]build$"
-                      "[/\\\\]external$")))
+                      "[/\\\\]external$"
+                      "[/\\\\]3rd$"
+                      "[/\\\\]packages$")))
   :custom
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (lsp-keymap-prefix "C-c l")
