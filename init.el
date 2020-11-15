@@ -48,8 +48,8 @@
 ;; to avoid chinese fonts bug.
 (if *win64*
     (custom-set-variables `(default ((t (:family "\272\332\314\345" :foundry "outline" :slant normal :weight normal :height 199 :width normal))))))
-;; larger font [16pt]
-(set-face-attribute 'default nil :height 160)
+;; larger font [14pt]
+(set-face-attribute 'default nil :height 140)
 
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
