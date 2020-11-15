@@ -6,8 +6,10 @@
   :ensure t
   :commands lsp
   :config
-  (setq lsp-auto-guess-root nil)
-  (setq lsp-file-watch-threshold 10000)
+  (setq lsp-auto-guess-root nil
+        lsp-file-watch-threshold 10000
+        company-idle-delay 0.0
+        lsp-idle-delay 0.1)
   (setq lsp-file-watch-ignored
         (append lsp-file-watch-ignored
                 (list "[/\\\\]build-release$"
@@ -16,6 +18,7 @@
                       "[/\\\\]external$"
                       "[/\\\\]3rd$"
                       "[/\\\\]packages$")))
+  (setq lsp-clients-clangd-executable "clangd")
   :custom
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (lsp-keymap-prefix "C-c l")
@@ -34,7 +37,7 @@
   :ensure t
   :commands lsp-treemacs-errors-list)
 
-;; ;; optionally if you want to use debugger
+;; optionally if you want to use debugger
 ;; (use-package dap-mode
 ;;   :ensure t)
 
