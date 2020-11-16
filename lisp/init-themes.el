@@ -24,7 +24,7 @@
 
 ;; If you don't customize it, this is the theme you get.
 ;; (setq-default custom-enabled-themes '(dracula))
-(setq-default custom-enabled-themes '(material))
+(setq-default custom-enabled-themes '(atom-one-dark))
 ;; (custom-set-faces `(region ((t (:background "#555753" :foreground "white")))))
 
 ;; Ensure that themes will be applied even if they have not been customized
