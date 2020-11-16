@@ -75,11 +75,11 @@
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
 (require-package 'use-package)
-(use-package esup
-  :ensure t
-  ;; To use MELPA Stable use ":pin mepla-stable",
-  :pin melpa-tsinghua
-  :commands (esup))
+;; (use-package esup
+;;   :ensure t
+;;   ;; To use MELPA Stable use ":pin mepla-stable",
+;;   :pin melpa-tsinghua
+;;   :commands (esup))
 (require-package 'diminish)
 (maybe-require-package 'scratch)
 (require-package 'command-log-mode)
@@ -100,7 +100,6 @@
 (require 'init-recentf)
 (require 'init-smex)
 (require 'init-ivy)
-(require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
 (require 'init-sessions)
@@ -111,7 +110,6 @@
 
 (require 'init-vc)
 (require 'init-git)
-(require 'init-github)
 
 (require 'init-projectile)
 
@@ -124,8 +122,6 @@
 (require 'init-cc)
 (require 'init-jump)
 (require 'init-cmake)
-(require 'init-python)
-(require 'init-rust)
 
 (require 'init-term-mode)
 (require 'init-nxml)
@@ -151,12 +147,10 @@
 (require 'init-folding)
 (require 'init-modeline)
 
-(require 'init-ledger)
+;; (require 'init-ledger)
 
 ;; Extra packages which don't require any configuration
 (require-package 'sudo-edit)
-(require-package 'gnuplot)
-(require-package 'lua-mode)
 (require-package 'htmlize)
 (when *is-a-mac*
   (require-package 'osx-location))
