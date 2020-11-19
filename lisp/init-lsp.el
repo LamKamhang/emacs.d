@@ -38,8 +38,8 @@
   :commands lsp-treemacs-errors-list)
 
 ;; optionally if you want to use debugger
-;; (use-package dap-mode
-;;   :ensure t)
+(use-package dap-mode
+  :ensure t)
 
 (use-package ivy-xref
   :ensure t

@@ -34,8 +34,8 @@
 (with-eval-after-load 'company-c-headers
   (setq-default company-c-headers-path-system
                 *my-cpp-include-path*))
-(with-eval-after-load 'company
-  (add-to-list 'company-backends `(company-capf company-c-headers)))
+;; (with-eval-after-load 'company
+;;   (add-to-list 'company-backends `(company-capf company-c-headers)))
 
 (provide 'init-cc)
 ;;; init-cc.el ends here
