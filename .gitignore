@@ -82,3 +82,4 @@ site-lisp/package/
 /transient
 company-statistics-cache.el
 .lsp-session*
+.dap-breakpoints

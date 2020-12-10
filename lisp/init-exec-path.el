@@ -14,5 +14,8 @@
             (daemonp)))
   (exec-path-from-shell-initialize))
 
+(when (daemonp)
+  (exec-path-from-shell-initialize))
+
 (provide 'init-exec-path)
 ;;; init-exec-path.el ends here

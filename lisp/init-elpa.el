@@ -34,8 +34,8 @@
   ;; (add-to-list 'package-archives '("localelpa" . "~/.emacs.d/localelpa") t)
   (add-to-list 'package-archives (cons "gnu-zjucad" (concat proto "://elpa.ryon.ren:2443/gnu/")) t)
   (add-to-list 'package-archives (cons "melpa-zjucad" (concat proto "://elpa.ryon.ren:2443/melpa/")) t)
-  (add-to-list 'package-archives (cons "gnu-china" (concat proto "://elpa.emacs-china.org/gnu/")) t)
-  (add-to-list 'package-archives (cons "melpa-china" (concat proto "://elpa.emacs-china.org/melpa/")) t)
+  ;; (add-to-list 'package-archives (cons "gnu-china" (concat proto "://elpa.emacs-china.org/gnu/")) t)
+  ;; (add-to-list 'package-archives (cons "melpa-china" (concat proto "://elpa.emacs-china.org/melpa/")) t)
   )
 
 
