@@ -30,7 +30,7 @@
     (interactive "P")
     (funcall split-function)
     (let ((target-window (next-window)))
-      ;; (set-window-buffer target-window (other-buffer))
+      (set-window-buffer target-window (other-buffer))
       (unless arg
         (select-window target-window)))))
 

@@ -15,7 +15,13 @@
 ;; Linum mode
 ;; (add-hook 'prog-mode-hook 'linum-mode)
 
-;; NO tool bar
+;;----------------------------------------------------------------------------
+;; Window size and features
+;;----------------------------------------------------------------------------
+(setq-default
+ window-resize-pixelwise t
+ frame-resize-pixelwise t)
+
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 ;; No scroll bar
