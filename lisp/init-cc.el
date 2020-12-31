@@ -22,7 +22,7 @@
   (add-hook
    'c++mode-hook
    (lambda ()
-     (setq flycheck-gcc-language-standard "c++11"))))
+     (setq flycheck-gcc-language-standard "c++17"))))
 
 (with-eval-after-load 'flycheck
   (add-hook
