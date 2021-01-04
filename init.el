@@ -120,6 +120,7 @@
 
 (require 'init-lsp)
 (require 'init-cc)
+(require 'init-python)
 (require 'init-jump)
 (require 'init-cmake)
 
