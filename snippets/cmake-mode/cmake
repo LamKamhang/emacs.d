@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: cmake
+# key: dir
+# contributor : kk
+# --
+if (NOT DEFINED ${1:DIR}_DIR)
+   set(${1:$(yas-text)}_DIR ${3:\${PROJECT_SOURCE_DIR}}/3rd/${2:${1:$(yas-text)}})
+endif()
+
+if (EXISTS \${${1:$(yas-text)}})
+   message(STATUS "${2:$(yas-text)} find: \${${1:$(yas-text)}}")
+else()
+   message(FATAL_ERROR "${2:$(yas-text)} not found! please set {${1:$(yas-text)}_DIR} correctly!")
+endif()
+$0
