@@ -6,7 +6,7 @@
                                  ("."
                                   "/usr/include/"
                                   "/usr/local/include/"
-                                  "/usr/include/c++/7/"
+                                  "/usr/include/c++/10/"
                                   "/usr/include/eigen3/"
                                   "/opt/intel/mkl/include/"
                                   "/opt/intel/ipp/include/"
