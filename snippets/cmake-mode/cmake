@@ -7,9 +7,12 @@ if (NOT DEFINED ${1:DIR}_DIR)
    set(${1:$(yas-text)}_DIR ${3:\${PROJECT_SOURCE_DIR}}/3rd/${2:${1:$(yas-text)}})
 endif()
 
-if (EXISTS \${${1:$(yas-text)}})
-   message(STATUS "${2:$(yas-text)} find: \${${1:$(yas-text)}}")
+if (EXISTS \${${1:$(yas-text)}_DIR})
+   message(STATUS "${2:$(yas-text)} find: \${${1:$(yas-text)}_DIR}")
 else()
    message(FATAL_ERROR "${2:$(yas-text)} not found! please set {${1:$(yas-text)}_DIR} correctly!")
 endif()
-$0
+
+if (NOT TARGET ${4:${2:$(yas-text)}})
+  $0
+endif()
