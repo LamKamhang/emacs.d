@@ -28,9 +28,13 @@
   ;; Official MELPA
   ;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   ;; Official MELPA Mirror, in case necessary.
-  (add-to-list 'package-archives (cons "melpa-tsinghua" (concat proto "://mirrors4.tuna.tsinghua.edu.cn/elpa/melpa/")) t)
-  (add-to-list 'package-archives (cons "gnu-tsinghua" (concat proto "://mirrors4.tuna.tsinghua.edu.cn/elpa/gnu/")) t)
-  (add-to-list 'package-archives '("localelpa" . "~/.emacs.d/localelpa") t)
+  ;; (add-to-list 'package-archives (cons "melpa-tsinghua" (concat proto "://mirrors4.tuna.tsinghua.edu.cn/elpa/melpa/")) t)
+  ;; (add-to-list 'package-archives (cons "gnu-tsinghua" (concat proto "://mirrors4.tuna.tsinghua.edu.cn/elpa/gnu/")) t)
+  ;; (add-to-list 'package-archives (cons "melpa-ustc" (concat proto "://mirrors.ustc.edu.cn/elpa/melpa/")) t)
+  ;; (add-to-list 'package-archives (cons "gnu-ustc" (concat proto "://mirrors.ustc.edu.cn/elpa/gnu/")) t)
+  (add-to-list 'package-archives '("melpa-localelpa" . "~/.emacs.d/localelpa/gnu/") t)
+  (add-to-list 'package-archives '("gnu-localelpa" . "~/.emacs.d/localelpa/melpa/") t)
+  (add-to-list 'package-archives '("localelpa" . "~/.emacs.d/localelpa/") t)
   ;; (add-to-list 'package-archives (cons "gnu-zjucad" (concat proto "://elpa.ryon.ren:2443/gnu/")) t)
   ;; (add-to-list 'package-archives (cons "melpa-zjucad" (concat proto "://elpa.ryon.ren:2443/melpa/")) t)
   ;; (add-to-list 'package-archives (cons "gnu-china" (concat proto "://elpa.emacs-china.org/gnu/")) t)

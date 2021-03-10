@@ -1,3 +1,0 @@
-(1
- (gnu-elpa-keyring-update . [(2019 3) nil "Update Emacs's GPG keyring for GNU ELPA " tar])
-)
