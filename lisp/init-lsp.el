@@ -40,6 +40,7 @@
 ;; optionally if you want to use debugger
 (use-package dap-mode
   :ensure t)
+(require 'dap-cpptools)
 
 (use-package ivy-xref
   :ensure t

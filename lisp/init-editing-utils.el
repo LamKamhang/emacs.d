@@ -6,8 +6,8 @@
 
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
-(when (eval-when-compile (version< "24.4" emacs-version))
-  (add-hook 'after-init-hook 'electric-indent-mode))
+;; (when (eval-when-compile (version< "24.4" emacs-version))
+;;   (add-hook 'after-init-hook 'electric-indent-mode))
 
 (maybe-require-package 'list-unicode-display)
 
@@ -114,8 +114,8 @@
     (diminish 'symbol-overlay-mode)
     (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
     (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
-    (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
-    (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)))
+    (define-key symbol-overlay-mode-map (kbd "C-M-n") 'symbol-overlay-jump-next)
+    (define-key symbol-overlay-mode-map (kbd "C-M-p") 'symbol-overlay-jump-prev)))
 
 ;;----------------------------------------------------------------------------
 ;; Zap *up* to char is a handy pair for zap-to-char
