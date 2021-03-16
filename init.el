@@ -121,7 +121,7 @@
 (require 'init-lsp)
 (require 'init-cc)
 (require 'init-glsl)
-;; (require 'init-python)
+(require 'init-python)
 (require 'init-jump)
 (require 'init-cmake)
 
