@@ -29,6 +29,7 @@
     (error "Emacs is too old -- this config requires v%s or higher" minver)))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(require 'cl)
 (require 'init-benchmarking) ;; Measure startup time
 
 (defconst *is-a-mac* (eq system-type 'darwin))
@@ -75,11 +76,6 @@
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
 (require-package 'use-package)
-;; (use-package esup
-;;   :ensure t
-;;   ;; To use MELPA Stable use ":pin mepla-stable",
-;;   :pin melpa-tsinghua
-;;   :commands (esup))
 (require-package 'diminish)
 (maybe-require-package 'scratch)
 (require-package 'command-log-mode)
@@ -88,7 +84,6 @@
 (require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)
-(require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-dired)
 (require 'init-isearch)
@@ -121,26 +116,25 @@
 (require 'init-lsp)
 (require 'init-cc)
 (require 'init-glsl)
-(require 'init-python)
 (require 'init-jump)
 (require 'init-cmake)
 
 (require 'init-term-mode)
-(require 'init-nxml)
-(require 'init-html)
-(require 'init-css)
-(require 'init-javascript)
-(require 'init-http)
-(require 'init-sql)
-(require 'init-yaml)
+;; (require 'init-nxml)
+;; (require 'init-html)
+;; (require 'init-css)
+;; (require 'init-javascript)
+;; (require 'init-http)
+;; (require 'init-sql)
+;; (require 'init-yaml)
 (require 'init-docker)
 
-(require 'init-paredit)
+;; (require 'init-paredit)
 (require 'init-lisp)
-(require 'init-slime)
-(require 'init-common-lisp)
+;; (require 'init-slime)
+;; (require 'init-common-lisp)
 
-(require 'init-proxy)
+;; (require 'init-proxy)
 (require 'init-yasnippet)
 
 (require 'init-misc)
@@ -149,7 +143,7 @@
 (require 'init-folding)
 (require 'init-modeline)
 
-;; (require 'init-ledger)
+(require 'init-ledger)
 
 ;; Extra packages which don't require any configuration
 (require-package 'sudo-edit)
