@@ -4,6 +4,7 @@
 
 ;;----------------------------------------------------------------------------
 ;; Nicer naming of buffers for files with identical names
+;; https://www.emacswiki.org/emacs/uniquify
 ;;----------------------------------------------------------------------------
 (require 'uniquify)
 
