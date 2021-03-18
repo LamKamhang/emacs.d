@@ -6,21 +6,19 @@
 
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
-;; (when (eval-when-compile (version< "24.4" emacs-version))
-;;   (add-hook 'after-init-hook 'electric-indent-mode))
+(add-hook 'after-init-hook 'electric-indent-mode)
 
 (maybe-require-package 'list-unicode-display)
 
-;;----------------------------------------------------------------------------
-;; Some basic preferences
-;;----------------------------------------------------------------------------
+
+;;; Some basic preferences
+
 (setq-default
  blink-cursor-interval 0.4
  bookmark-default-file (expand-file-name ".bookmarks.el" user-emacs-directory)
  buffers-menu-max-size 30
  case-fold-search t
  column-number-mode t
- delete-selection-mode t
  ediff-split-window-function 'split-window-horizontally
  ediff-window-setup-function 'ediff-setup-windows-plain
  indent-tabs-mode nil
@@ -35,6 +33,7 @@
  truncate-lines nil
  truncate-partial-width-windows nil)
 
+(add-hook 'after-init-hook 'delete-selection-mode)
 ;; Global Auto Revert mode is a global minor mode that reverts any
 ;; buffer associated with a file when the file changes on disk.
 (add-hook 'after-init-hook 'global-auto-revert-mode)
