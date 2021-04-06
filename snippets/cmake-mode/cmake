@@ -9,10 +9,11 @@ endif()
 
 if (EXISTS \${${1:$(yas-text)}_DIR})
    message(STATUS "${2:$(yas-text)} find: \${${1:$(yas-text)}_DIR}")
+   if (NOT TARGET ${4:${2:$(yas-text)}})
+   $0
+   endif()
+   set(${5:${4:$(yas-text)}}_FOUND TRUE)
 else()
-   message(FATAL_ERROR "${2:$(yas-text)} not found! please set {${1:$(yas-text)}_DIR} correctly!")
-endif()
-
-if (NOT TARGET ${4:${2:$(yas-text)}})
-  $0
+   message(WARNING "${2:$(yas-text)} not found! please set {${1:$(yas-text)}_DIR} correctly!")
+   set(${5:$(yas-text)}_FOUND FALSE)
 endif()
