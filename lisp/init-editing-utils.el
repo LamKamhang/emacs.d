@@ -113,8 +113,8 @@
     (diminish 'symbol-overlay-mode)
     (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
     (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
-    (define-key symbol-overlay-mode-map (kbd "C-M-n") 'symbol-overlay-jump-next)
-    (define-key symbol-overlay-mode-map (kbd "C-M-p") 'symbol-overlay-jump-prev)))
+    (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
+    (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)))
 
 ;;----------------------------------------------------------------------------
 ;; Zap *up* to char is a handy pair for zap-to-char
@@ -214,11 +214,11 @@
 ;; use M-S-up and M-S-down, which will work even in lisp modes.
 ;;----------------------------------------------------------------------------
 (require-package 'move-dup)
-(global-set-key [M-S-up] 'md-move-lines-up)
-(global-set-key [M-S-down] 'md-move-lines-down)
+(global-set-key [M-S-up] 'move-dup-move-lines-up)
+(global-set-key [M-S-down] 'move-dup-move-lines-down)
 
-(global-set-key (kbd "C-c d n") 'md-duplicate-down)
-(global-set-key (kbd "C-c d p") 'md-duplicate-up)
+(global-set-key (kbd "C-c d n") 'move-dup-duplicate-down)
+(global-set-key (kbd "C-c d p") 'move-dup-duplicate-up)
 
 ;;----------------------------------------------------------------------------
 ;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
