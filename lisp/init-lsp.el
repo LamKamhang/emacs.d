@@ -19,13 +19,10 @@
                       "[/\\\\]3rd$"
                       "[/\\\\]packages$")))
   (setq lsp-clients-clangd-executable "clangd")
-  :custom
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (lsp-keymap-prefix "C-c l")
   :hook
   ((c-mode c++-mode cuda-mode objc-mode) . lsp)
   (lsp-mode . lsp-enable-which-key-integration))
-
+(setq lsp-keymap-prefix "C-c l")
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode)
