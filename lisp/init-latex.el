@@ -86,6 +86,21 @@
 (setq-default reftex-label-alist '(AMSTeX))
 (setq-default reftex-ref-style-default-list
               (list "Cleveref" "Hyperref" "Default"))
-
+(add-to-list
+ 'TeX-command-list
+ '("make"
+   "latexmk"
+   TeX-run-command
+   nil
+   t
+   :help "latexmk"))
+(add-to-list
+ 'TeX-command-list
+ '("myview"
+   "evince  out/%s.pdf"
+   TeX-run-command
+   nil
+   t
+   :help "myview"))
 (provide 'init-latex)
 ;;; init-latex.el ends here
