@@ -4,9 +4,9 @@ Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 
 [Service]
 Type=forking
-# ExecStart=/usr/bin/emacs --no-desktop --eval "(load-theme 'tango-dark)" --daemon
 ExecStart=/usr/bin/emacs --daemon
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+Environment=LC_CTYPE=zh_CN.UTF-8
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
 Restart=on-failure
 
