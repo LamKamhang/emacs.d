@@ -34,6 +34,22 @@
             (setq cdlatex-auto-help-delay 0.2)
             (setq TeX-save-query nil)
             (setq TeX-show-compilation t)
+            (add-to-list
+             'TeX-command-list
+             '("make"
+               "latexmk"
+               TeX-run-command
+               nil
+               t
+               :help "latexmk"))
+            (add-to-list
+             'TeX-command-list
+             '("myview"
+               "evince out/%s.pdf"
+               TeX-run-discard-or-function
+               nil
+               t
+               :help "myview"))
             (setq cdlatex-math-symbol-alist
                   '(
                     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -86,21 +102,6 @@
 (setq-default reftex-label-alist '(AMSTeX))
 (setq-default reftex-ref-style-default-list
               (list "Cleveref" "Hyperref" "Default"))
-(add-to-list
- 'TeX-command-list
- '("make"
-   "latexmk"
-   TeX-run-command
-   nil
-   t
-   :help "latexmk"))
-(add-to-list
- 'TeX-command-list
- '("myview"
-   "evince  out/%s.pdf"
-   TeX-run-command
-   nil
-   t
-   :help "myview"))
+
 (provide 'init-latex)
 ;;; init-latex.el ends here
