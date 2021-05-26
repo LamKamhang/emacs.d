@@ -44,6 +44,14 @@
                :help "latexmk"))
             (add-to-list
              'TeX-command-list
+             '("myclean"
+               "latexmk -c"
+               TeX-run-command
+               nil
+               t
+               :help "myclean"))
+            (add-to-list
+             'TeX-command-list
              '("myview"
                "evince out/%s.pdf"
                TeX-run-discard-or-function

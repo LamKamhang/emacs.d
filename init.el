@@ -144,6 +144,7 @@
 (require 'init-modeline)
 
 (require 'init-ledger)
+(require 'init-google-translate)
 
 ;; Extra packages which don't require any configuration
 (require-package 'sudo-edit)
