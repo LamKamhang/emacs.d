@@ -5,6 +5,9 @@
 (require-package 'auctex)
 (require-package 'cdlatex)
 
+;; https://math.uoregon.edu/wp-content/uploads/2014/12/compsymb-1qyb3zd.pdf
+;; A useful LaTeX Symbol List
+
 ;; ;; change the prefix of outline mode to C-c e
 (add-hook 'outline-minor-mode-hook
           (lambda () (local-set-key "\C-z"
@@ -16,7 +19,7 @@
         (add-hook 'LaTeX-mode-hook mode)); with AUCTeX LaTeX mode
       (list 'turn-on-cdlatex
             'turn-on-reftex
-            'turn-on-auto-fill
+            'turn-off-auto-fill
             'turn-on-flyspell
             'outline-minor-mode
             'hide-body
@@ -85,8 +88,14 @@
                     ;; 4. rmdot:    t   if the dot on i and j has to be removed.              ;;
                     ;; 5. it        t   if italic correction is required.                     ;;
                     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                    ( ?s    "\\boldsymbol"            nil t   nil nil )
-                    ( ?o    "\\mathbb"                nil t   nil nil )
+                    ( ?B    "\\boldsymbol"            nil t   nil nil )
+                    ( ?`    "\\widetilde"             nil t   nil nil )
+                    ( ?n    "\\mathnormal"            nil t   nil nil )
+                    ( ?d    "\\mathds"                nil t   nil nil ) ;; \usepackage{dsfont}
+                    ( ?s    "\\mathscr"               nil t   nil nil ) ;; \usepackage{mathrsfs}
+                    ( ?o    "\\mathbb"                nil t   nil nil ) ;; outline \usepackage{amssymb}
+                    ( ?l    "\\mathfrak"              nil t   nil nil ) ;; Lie-Algebra \usepackage{amssymb}
+                    ( ?O    "\\varmathbb"             nil t   nil nil ) ;; \usepackage{txfonts} or {pxfonts}
                     ))
             (setq cdlatex-command-alist
                   '(
