@@ -10,6 +10,7 @@
         lsp-file-watch-threshold 10000
         company-idle-delay 0.0
         lsp-idle-delay 0.1)
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq lsp-file-watch-ignored
         (append lsp-file-watch-ignored
                 (list "[/\\\\]build-release$"
