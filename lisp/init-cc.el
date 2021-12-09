@@ -48,7 +48,7 @@
   (cpp-highlight-buffer t))
 
 (add-hook 'c-mode-common-hook 'my-cpp-highlight)
-(add-hook 'after-save-hook 'my-cpp-highlight)
+(add-hook 'c-mode-common-hook (lambda () (add-hook 'after-save-hook 'my-cpp-highlight)))
 
 (provide 'init-cc)
 ;;; init-cc.el ends here
